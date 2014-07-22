@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20140722114955) do
     t.integer "owner"
   end
 
+  create_table "matches", force: true do |t|
+    t.string   "team_name_1"
+    t.string   "team_name_2"
+    t.datetime "deadline"
+    t.integer  "team_score_1"
+    t.integer  "team_score_2"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
