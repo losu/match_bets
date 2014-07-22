@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722093259) do
+ActiveRecord::Schema.define(version: 20140722103019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "matches", force: true do |t|
+    t.string   "team_name_1"
+    t.string   "team_name_2"
+    t.datetime "deadline"
+    t.integer  "team_score_1"
+    t.integer  "team_score_2"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
