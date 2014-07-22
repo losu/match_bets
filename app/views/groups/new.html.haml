@@ -1,5 +1,6 @@
 .container
 	.w50.center-block
+
 		Zalogowano jako:  
 		=current_user.email
 		=link_to "wyloguj", destroy_user_session_path, method: :delete 
@@ -10,6 +11,9 @@
 			=f.label "Nazwa grupy: " 
 			%br
 			=f.text_field :name
+
+			%br
+	
 			=f.submit "Dodaj!", class: "btn, btn-primary"
 		
 		%br

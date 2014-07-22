@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'users#index'
+
+  get 'group/:id' => 'groups#index'
 
   resources :groups
 
+  root 'users#index'
 end
 
