@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
 
 
-  -#get 'group/:id' => 'groups#index'
+  get 'group/:id' => 'groups#index'
 
-  #-resources :groups
+  resources :groups
 
-  #-root 'home#index'
+  root 'users#index'
 
 
 end

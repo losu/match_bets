@@ -1,6 +1,7 @@
 #coding: UTF-8
 
 class GroupsController < ApplicationController
+		before_action :authenticate_user!, only: [ :new, :create]
 
 	def show
 		@group = Group.find(params[:id])
@@ -12,6 +13,8 @@ class GroupsController < ApplicationController
 
 	def create
 		@group=Group.new(group_params)
+		@group.active = true
+		@group.owner = current_user.id
 		if @group.save
 			redirect_to root_url, notice: 'Dodano grupę.'
 		else
