@@ -1,8 +1,8 @@
 .container
 	.w50.center-block
-		-#Zalogowano:  
-		-#=current_user.email
-		-#=link_to "wyloguj", destroy_user_session_path, method: :delete 
+		Zalogowano:  
+		=current_user.email
+		=link_to "wyloguj", destroy_user_session_path, method: :delete 
 		%h1.text-center Dodaj grupę
 		=form_for(@group) do |f|
 
