@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :groups
+  resources :bets
 
 end
 
