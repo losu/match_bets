@@ -11,16 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722114955) do
+ActiveRecord::Schema.define(version: 20140723085729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bets", force: true do |t|
+    t.integer "match_id"
+    t.integer "user_id"
+    t.integer "group_id"
+    t.integer "team_score1"
+    t.integer "team_score2"
+    t.integer "points"
+  end
 
   create_table "groups", force: true do |t|
     t.string  "name"
     t.boolean "active"
     t.integer "matches_idmatches"
     t.integer "owner"
+  end
+
+  create_table "groupsets", force: true do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.integer "points_in_group"
   end
 
   create_table "matches", force: true do |t|
@@ -44,6 +59,8 @@ ActiveRecord::Schema.define(version: 20140722114955) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin"
+    t.string   "nickname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

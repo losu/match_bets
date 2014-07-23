@@ -5,6 +5,8 @@ class CreateGroup < ActiveRecord::Migration
     	t.boolean :active
     	t.integer :matches_idmatches
     	t.integer :owner
+
+      
     end
   end
 end

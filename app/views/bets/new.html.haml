@@ -1,0 +1,7 @@
+%h1 dodaj zakład
+= form_for(@bet) do |f|
+  = f.text_field :team_score1
+  = f.text_field :team_score2
+  = f.hidden_field :group_id, value: params[:group_id]
+  = f.hidden_field :match_id, value: params[:match_id]
+  = f.submit "dodaj"
