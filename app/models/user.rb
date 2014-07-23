@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook]
 
   validates :admin, presence: true
+  before_create :set_admin
    has_many :groupsets
    has_many :groups, through: :groupsets
 
@@ -30,5 +31,11 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+
+    def set_admin
+      self.admin = false
+      self.nickname = "aaa"
+    end 
 
 end
