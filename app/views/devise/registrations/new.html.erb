@@ -1,24 +1,20 @@
-<div class="container" >	
-	<h2>Sign up</h2>
 
-	<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	<div class="container">
+	<%= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "form-signin"}) do |f| %>
 	  <%= devise_error_messages! %>
-
-	  <div><%= f.label :nickname %><br />
-	  <%= f.text_field :nickname, autofocus: true %></div>
+		<h2 class="form-signin-heading">Zarejestruj się</h2>
 
 
-	  <div><%= f.label :email %><br />
-	  <%= f.email_field :email, autofocus: true %></div>
+	  <%= f.text_field :nickname, autofocus: true, class: "form-control", placeholder: :nickname %>
 
-	  <div><%= f.label :password %><br />
-	    <%= f.password_field :password, autocomplete: "off" %></div>
 
-	  <div><%= f.label :password_confirmation %><br />
-	    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+	  <%= f.email_field :email, autofocus: true , class: "form-control",placeholder: :email%>
 
-	  <div><%= f.submit "Sign up" %></div>
+	  <%= f.password_field :password, autocomplete: "off", class: "form-control",placeholder: :password %>
+
+	  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control",placeholder: "password confirmation" %>
+
+	  <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block" %>
+
 	<% end %>
-
 	<%= render "devise/shared/links" %>
-</div>
