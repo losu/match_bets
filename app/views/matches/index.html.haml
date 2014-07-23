@@ -1,0 +1,11 @@
+%h1 Lista meczy:
+%a.btn.btn-primary.btn-lg{role: "button", href: new_match_path} Dodaj mecz
+%a.btn.btn-primary.btn-lg{role: "button", href: root_path} Strona główna
+%ul&
+	- @matches.each do |match|
+		%li
+			= match.team_name_1
+			vs
+			= match.team_name_2
+
+			
