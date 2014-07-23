@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140723092244) do
+=======
+ActiveRecord::Schema.define(version: 20140723085729) do
+>>>>>>> dede941ad10113543110d838852ff965015f9877
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +34,12 @@ ActiveRecord::Schema.define(version: 20140723092244) do
     t.boolean "active"
     t.integer "matches_idmatches"
     t.integer "owner"
+  end
+
+  create_table "groupsets", force: true do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.integer "points_in_group"
   end
 
   create_table "matches", force: true do |t|
@@ -53,9 +63,14 @@ ActiveRecord::Schema.define(version: 20140723092244) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
+=======
+    t.boolean  "admin"
+    t.string   "nickname"
+>>>>>>> dede941ad10113543110d838852ff965015f9877
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
