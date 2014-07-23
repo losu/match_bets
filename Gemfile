@@ -39,6 +39,7 @@ gem 'spring',        group: :development
 gem 'pg'
 gem 'haml'
 gem 'devise'
+gem 'omniauth-facebook'
 
 group :development, :test do 
 	gem 'rspec-rails', '~> 3.0.0'

@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 20140723084209) do
     t.integer "owner"
   end
 
+  create_table "groupsets", force: true do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.integer "points_in_group"
+  end
+
   create_table "matches", force: true do |t|
     t.string   "team_name_1"
     t.string   "team_name_2"
