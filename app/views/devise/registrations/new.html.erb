@@ -1,8 +1,9 @@
 
-	<div class="container", >
-	<h2 class="form-signin-heading">Zarejestruj się</h2>
-	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "form-signin", role: "form") do |f| %>
+	<div class="container">
+	<%= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "form-signin"}) do |f| %>
 	  <%= devise_error_messages! %>
+		<h2 class="form-signin-heading">Zarejestruj się</h2>
+
 
 	  <%= f.text_field :nickname, autofocus: true, class: "form-control", placeholder: :nickname %>
 
@@ -16,6 +17,4 @@
 	  <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block" %>
 
 	<% end %>
-</div>
-
 	<%= render "devise/shared/links" %>
