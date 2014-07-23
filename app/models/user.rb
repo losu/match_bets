@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  validates :admin, presence: true
+
    has_many :groupsets
    has_many :groups, through: :groupsets
 
