@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722132004) do
+ActiveRecord::Schema.define(version: 20140723085729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20140722132004) do
     t.boolean "active"
     t.integer "matches_idmatches"
     t.integer "owner"
+  end
+
+  create_table "groupsets", force: true do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.integer "points_in_group"
   end
 
   create_table "matches", force: true do |t|
