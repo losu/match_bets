@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get 'group/:id' => 'groups#index'
 
   resources :groups
-  resources :bets
-
-  root 'users#index'
+  resources :matches
+ 	resources :bets
+	root 'users#index'
 end
 

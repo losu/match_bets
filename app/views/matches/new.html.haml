@@ -1,0 +1,11 @@
+%h1 Dodaj mecz		
+= form_for(@match) do |m|
+	= m.label 'Dryżyna 1:'
+	= m.text_field :team_name_1
+	%br
+	= m.label 'Dryżyna 2:'
+	= m.text_field :team_name_2
+	%br
+
+	%button.btn.btn-primary.btn-lg{type: "submit"} Dodaj
+	%a.btn.btn-primary.btn-lg{role: "button", href: matches_path} Anuluj
