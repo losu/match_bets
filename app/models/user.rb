@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
    devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :trackable, :validatable
 
-
+  validates :admin, presence: true
    has_many :groupsets
    has_many :groups, through: :groupsets
 end
