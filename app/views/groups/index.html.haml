@@ -1,0 +1,13 @@
+.container
+    Zalogowany jako: 
+    =current_user.email
+
+    =link_to "wyloguj", destroy_user_session_path, method: :delete
+
+.container
+    .w50.center-block
+        %h1 Lista grup:
+        %ul
+            -@groups.each do |group|
+                %li
+                    =group.name
