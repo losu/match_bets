@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-
    has_many :groupsets
    has_many :groups, through: :groupsets
 
@@ -30,5 +29,11 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+
+    def set_admin
+      self.admin = false
+      self.nickname = "aaa"
+    end 
 
 end
