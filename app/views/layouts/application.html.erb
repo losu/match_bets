@@ -31,14 +31,7 @@
           <ul class="dropdown-menu" role="menu">
           <li class="divider"></li>
             <li><%= link_to "Utwórz grupę", new_group_path %></li>
-          <li class="divider"></li>
-          <!-- Tutaj foreach wyswietlajacy grupy-->
-          <%- @current_user.groups.each do |group|   %>
-
-            <li><%= link_to group.name, group_path(group.id) %></li>
-
-          <%end%>
-          <!-- Koniec foreacha-->
+          
           </ul>
         </li>
         <%end%>
