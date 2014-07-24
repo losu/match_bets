@@ -3,6 +3,10 @@
 class GroupsController < ApplicationController
 		before_action :authenticate_user!, only: [ :new, :create]
 
+	def index
+		redirect_to new_group_path
+	end
+
 	def show
 		@group = Group.find(params[:id])
 	end
