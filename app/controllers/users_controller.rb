@@ -29,6 +29,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
   # private
   #  def make_sure_its_mine
   #    unless current_user.id==params[:id].to_i
