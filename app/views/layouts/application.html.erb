@@ -18,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">MatchBets</a>
+      <a class="navbar-brand" href="/">MatchBets</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,7 +27,7 @@
         <!-- Tutaj IF sprawdzajacy administratora -->
         <% if current_user%>
           <% if current_user.admin %>
-            <li class="active"><a href="#">Panel Administratora</a></li>
+            <li class="active"><%= link_to 'Panel Administratora', matches_path %></li>
           <%end%>
         <%end%>
         <!-- koniec IF'a -->
