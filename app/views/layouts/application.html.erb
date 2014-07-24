@@ -24,13 +24,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <!-- Tutaj IF sprawdzajacy administratora -->
-        <% if current_user%>
-          <% if current_user.admin %>
-            <li class="active"><%= link_to 'Panel Administratora', matches_path %></li>
-          <%end%>
-        <%end%>
-        <!-- koniec IF'a -->
         <% if current_user%>
         <li class="dropdown">
         <!-- Tutaj chcialbym aby sie rozwijała lista grup -->
@@ -43,6 +36,24 @@
           </ul>
         </li>
         <%end%>
+
+        <% if current_user%>
+          <% if current_user.admin %>
+            <li class="dropdown">
+            <!-- Tutaj chcialbym aby sie rozwijała lista grup -->
+
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Panel Administratora <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+              <!-- Tutaj foreach wyswietlajacy grupy-->
+                <li><%= link_to 'Lista Meczów', matches_path %></a></li>
+                <li><%= link_to 'Dodaj mecz', new_match_path %></li>
+              <!-- Koniec foreacha-->
+              </ul>
+            </li>
+          <%end%>
+        <%end%>
+
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user%>
