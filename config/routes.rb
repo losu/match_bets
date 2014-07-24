@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   resources :groups
   resources :matches
- 	resources :bets
-	root 'users#index'
+  resources :bets
+
+ 	root 'users#index'
 end
 
