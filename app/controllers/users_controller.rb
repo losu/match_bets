@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   
   def index
     @user=User.all  
-    @groupset = Group.where(user_id: current_user.id)
   end
 
   def show
