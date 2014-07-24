@@ -46,7 +46,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user%>
-          <li><a href="#"><%= current_user.nickname %></a></li>
+          <% if current_user.provider == "facebook"%>
+            <li><a href="#"><%= current_user.name %></a></li>
+          <%else%>
+            <li><a href="#"><%= current_user.nickname %></a></li>
+          <%end%>
           <li> <%= link_to 'Wyloguj sie!', destroy_user_session_path, method: :delete %> </li>
         <% else %>
            <li> <%= link_to 'Zaloguj sie!', new_user_session_path %> </li>
