@@ -1,6 +1,7 @@
 #coding UTF-8
 
 class BetsController < ApplicationController
+	before_action :authenticate_user!
 	def index 
 
 	end
@@ -17,8 +18,7 @@ class BetsController < ApplicationController
 		if @bet.save
 			redirect_to root_url, notice: "utworzono zakład"
 		else
-			# render 'new'
-			redirect_to bets_path, notice: "nie poszla walidacja"
+			render 'new', notice: "nie poszla walidacja" 
 		end
 	end
 
