@@ -13,8 +13,6 @@ class UsersController < ApplicationController
     @user=current_user
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
  
@@ -31,9 +29,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-
-
   # private
   #  def make_sure_its_mine
   #    unless current_user.id==params[:id].to_i
