@@ -22,9 +22,14 @@ class MatchesController < ApplicationController
 	end
 
 	def create
+		@user = current_user
 		@match = Match.new(match_params)
 		if @match.save
 			redirect_to matches_path
+			UserMailer.welcome_email(@user).deliver
+ 
+        	#format.html { redirect_to(@user, notice: 'User was successfully created.') }
+        	#format.json { render json: @user, status: :created, location: @user }
 		else
 			render:new
 		end

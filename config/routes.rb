@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
   get 'group/:id' => 'groups#index'
-
+  resources :mailer
   resources :groups
   resources :matches
   resources :bets
