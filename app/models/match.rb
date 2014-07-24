@@ -1,5 +1,5 @@
 class Match < ActiveRecord::Base
-	# before_validation :set_scores_to_zero, :set_date
+	before_validation :set_scores_to_zero, :set_date
 
 	validates :team_name_1, presence: true
 	validates :team_name_2, presence: true
