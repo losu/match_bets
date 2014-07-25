@@ -34,7 +34,6 @@
                     %li= link_to "Utwórz grupę", new_group_path
                     %li.divider
                     / Tutaj foreach wyswietlajacy grupy
-                    %li= link_to 'Lista Meczów', matches_path
                     - current_user.groups.each do |group|
                       %li= link_to group.name, group_path(group.id)
                     / Koniec foreacha
