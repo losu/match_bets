@@ -2,6 +2,7 @@
 
 class MatchesController < ApplicationController
 	before_action :authenticate_user!, only: [ :new, :create]
+	#before_action :check_id_admin, only: [ :new, :create]
 
 	def index
 		@matches = Match.all
@@ -38,6 +39,12 @@ class MatchesController < ApplicationController
 	private
 		def match_params
 			params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)
+		end
+
+		def check_if_admin
+			unless current_user.admin
+				redirect_to root_url, alert: 'Nie masz uprawnień!'
+			end
 		end
 
 end

@@ -1,5 +1,6 @@
 %h1 dodaj zakład
 = form_for(@bet) do |f|
+  =f.label Match.where(id => :match_id).team_name_1
   = f.text_field :team_score1
   = f.text_field :team_score2
   = f.hidden_field :group_id, value: params[:group_id]
