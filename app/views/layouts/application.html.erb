@@ -24,7 +24,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <% if current_user%>
+        <% if @current_user%>
         <li class="dropdown">
         <!-- Tutaj chcialbym aby sie rozwijała lista grup -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Twoje grupy <span class="caret"></span></a>
@@ -32,6 +32,7 @@
             <li><%= link_to "Utwórz grupę", new_group_path %></li>
           <li class="divider"></li>
           <!-- Tutaj foreach wyswietlajacy grupy-->
+
             <%- current_user.groups.each do |group|   %>
 
               <li><%= link_to group.name, group_path(group.id) %></li>
