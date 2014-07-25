@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
 		@group = Group.find(params[:id])
 		@invite = Invite.new
 		@id = params[:id]
+		@matches = Match.where('deadline <= :time', :time=>Time.now - 100)
 	end
 
 	def sendmail(id, user)

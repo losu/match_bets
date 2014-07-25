@@ -28,9 +28,9 @@ class ApplicationController < ActionController::Base
     def after_sign_in_path_for(resource)
       @user = current_user
       if @user.admin?
-        request.env['omniauth.origin'] || stored_location_for(resource) || matches_path
-      else
         request.env['omniauth.origin'] || stored_location_for(resource) || new_match_path
+      else
+        request.env['omniauth.origin'] || stored_location_for(resource) || matches_path
       end
     end
 end
