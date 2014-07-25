@@ -10,8 +10,6 @@
     =@group.name 
     id: 
     =@id
-    =link_to "sendmail", group_sendmail_path(params[:id])
-
 
     = form_for @invite do |f|
       = f.hidden_field :group_id, :value => @id
