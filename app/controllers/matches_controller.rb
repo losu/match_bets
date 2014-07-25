@@ -2,7 +2,7 @@
 
 class MatchesController < ApplicationController
 	before_action :authenticate_user!, only: [ :new, :create]
-	before_action :check_id_admin, only: [ :new, :create]
+	#before_action :check_id_admin, only: [ :new, :create]
 
 	def index
 		@matches = Match.all
