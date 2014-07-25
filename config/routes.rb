@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get "sendmail"
   end
 
+  resources :invites
+
  	root 'users#index'
 end
 

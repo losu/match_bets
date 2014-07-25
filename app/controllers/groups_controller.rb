@@ -10,15 +10,14 @@ class GroupsController < ApplicationController
 
 	def show
 		@group = Group.find(params[:id])
+		@invite = Invite.new
 		@id = params[:id]
 		@matches = Match.where('deadline <= :time', :time=>Time.now - 100)
 	end
 
-	def sendmail
-		@user = current_user
-		UserMailer.welcome_email(@user).deliver
+	def sendmail(id, user)
+		UserMailer.welcome_email(@user, @id).deliver
 		redirect_to groups_path
-
 	end
 
 	def new

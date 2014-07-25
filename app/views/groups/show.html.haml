@@ -13,6 +13,13 @@
     =link_to "sendmail", group_sendmail_path(params[:id])
 
 
+    = form_for @invite do |f|
+      = f.hidden_field :group_id, :value => @id
+      = f.label :email
+      = f.email_field :email, :value => @invite.email
+      = f.submit 'Send' 
+
+
 %center
   %h1 Dostępne mecze:
 %div.container
@@ -36,3 +43,4 @@
           %th #{match.deadline}
           %th 
             =link_to "Obstaw",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id
+

@@ -8,10 +8,6 @@ class MatchesController < ApplicationController
 		@matches = Match.all
 	end
 
-	def sendmail
-
-	end
-
 	def show
 		@match = Match.find(params[:id])
 	end
