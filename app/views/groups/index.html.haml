@@ -11,3 +11,4 @@
             -@groups.each do |group|
                 %li
                     =group.name
+                    =link_to "Zobacz", group_path(group.id), method: :get

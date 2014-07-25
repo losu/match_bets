@@ -7,6 +7,10 @@ class MatchesController < ApplicationController
 		@matches = Match.all
 	end
 
+	def sendmail
+
+	end
+
 	def show
 		@match = Match.find(params[:id])
 	end
@@ -22,6 +26,7 @@ class MatchesController < ApplicationController
 	end
 
 	def create
+		@user = current_user
 		@match = Match.new(match_params)
 		if @match.save
 			redirect_to matches_path

@@ -2,6 +2,7 @@
 
 class GroupsController < ApplicationController
 		before_action :authenticate_user!, only: [ :new, :create]
+		helper_method :sendmail
 
 	def index
 		@groups = Group.all
@@ -9,6 +10,14 @@ class GroupsController < ApplicationController
 
 	def show
 		@group = Group.find(params[:id])
+		@id = params[:id]
+	end
+
+	def sendmail
+		@user = current_user
+		UserMailer.welcome_email(@user).deliver
+		redirect_to groups_path
+
 	end
 
 	def new
@@ -37,6 +46,10 @@ class GroupsController < ApplicationController
 		private
 			def group_params
 				params.require(:group).permit(:name)		
+			end
+
+			def par
+				params.require(:group).permit(:id)
 			end
 
 end
