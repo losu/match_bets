@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
 	def show
 		@group = Group.find(params[:id])
 		@id = params[:id]
+		@matches = Match.where('deadline <= :time', :time=>Time.now - 100)
 	end
 
 	def sendmail
