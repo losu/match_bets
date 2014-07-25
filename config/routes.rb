@@ -11,6 +11,13 @@ Rails.application.routes.draw do
   resources :groups do
   	get "adduser"
   end
+  resources :users do
+    get "new"
+  end
+
+  resources :groups do
+    get "sendmail"
+  end
 
  	root 'users#index'
 end
