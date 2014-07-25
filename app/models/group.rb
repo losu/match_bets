@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
 	validates :owner, presence: true
 	has_many :groupsets
 	has_many :users, through: :groupsets
+	has_many :invites
 
 	def create_ranking
 		@group=Group.find(self.id)
