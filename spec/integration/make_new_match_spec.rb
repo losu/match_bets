@@ -1,26 +1,21 @@
-# require 'spec_helper'
-# include Capybara::DSL
-# require 'capybara/rspec'
+require 'spec_helper'
+include Capybara::DSL
+require 'capybara/rspec'
 
-# describe "make new match" do
-#   # before :each do
-#  #      User.new(email: "user@example.com", password: "qwerty12345", admin: false, nickname: "cokolwiek")
-#   # end
-#   it "creating new match" do
-#     visit 'matches/new'
-#     # within ("#user") do
-#     print page.html
-#       fill_in 'match_team_name_1', :with => "jedno"
-#       fill_in 'match_team_name_2', :with => "drugie"
-#     # print page.html
-#       # fill_in 'user_email', :with => "tytus.powroznik@gmail.com"
-#      #  fill_in 'user_password', :with => "qwerty12345"
+describe "make new match:" do
+  before :each do
+    @user=User.create(email: "test@example.com", password: "qwerty12345", admin: true)
+    visit '/users/sign_in'
+    fill_in 'user_email',        :with => "test@example.com"
+    fill_in 'user_password',     :with => "qwerty12345"
+    find_button('Sign in').click
+  end
 
-#     # end
-#     click_button 'Dodaj'
-#     # find_button('Sign in').click
-#     # save_and_open_page
-
-#     expect(page).to have_content ('Lista meczów:')
-#   end
-# end
+  it 'create new match' do
+    visit '/matches/new'
+    fill_in 'match_team_name_1',  :with => "san marino"
+    fill_in 'match_team_name_2',  :with => "korea północna"
+    find_button('Dodaj').click
+    expect(page).to have_content ("Lista meczów:")
+  end
+end
