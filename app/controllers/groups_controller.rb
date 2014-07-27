@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
 			groupset.save
 
 
-			redirect_to root_url, notice: 'Dodano grupę.'
+			redirect_to group_path(@group.id), notice: 'Dodano grupę.'
 		else
 			render :new
 		end
