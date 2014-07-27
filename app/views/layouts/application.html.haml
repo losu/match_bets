@@ -69,9 +69,9 @@
       / /.Navbar
       %div
         - if alert
-          %p
+          %p.alert.alert-warning
             ALERT!: #{alert}
         - elsif notice
-          %p
+          %p.alert.alert-success
             notice: #{notice}
       = yield
