@@ -2,6 +2,7 @@
     .w50.center-block
         %h1 Lista grup:
         %ul
+        -if current_user
             -current_user.groups.each do |group|
                 %li
                     =group.name
