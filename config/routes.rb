@@ -8,15 +8,8 @@ Rails.application.routes.draw do
   resources :groups
   resources :matches
   resources :bets
-  resources :groups do
-  	get "adduser"
-  end
   resources :users do
     get "new"
-  end
-
-  resources :groups do
-    get "sendmail"
   end
 
   resources :invites
