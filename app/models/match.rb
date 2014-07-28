@@ -1,5 +1,6 @@
 class Match < ActiveRecord::Base
-	before_validation :set_scores_to_zero, :set_date
+	before_validation :set_scores_to_zero
+	# before_validation :set_date
 
 	validates :team_name_1, presence: true
 	validates :team_name_2, presence: true
@@ -48,9 +49,9 @@ class Match < ActiveRecord::Base
 			self.team_score_2 = 0
 		end	
 
-		def set_date
-			self.deadline = Date.tomorrow
-		end
+		# def set_date
+		# 	self.deadline = Date.tomorrow
+		# end
 
 		def check_teams?
 			if self.team_name_1 == "sss" 

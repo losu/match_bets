@@ -8,5 +8,15 @@
   = m.text_field :team_name_2, class: "form-control"
   %br
 
+    = m.text_field :deadline, class: "form-control", "data-format" => "dd-MM-yyyy hh:mm:ss", :id => "datetimepicker"
+ 
+
   %button.btn.btn-primary.btn-lg{type: "submit"} Dodaj
   %a.btn.btn-primary.btn-lg{role: "button", href: matches_path} Anuluj
+
+:javascript
+  $(function() {
+    $('#datetimepicker').datetimepicker({
+      language: 'pt-BR'
+    });
+  });
