@@ -74,7 +74,4 @@
         - elsif notice
           %p.alert.alert-success
             notice: #{notice}
-        - unless resource.errors.empty?
-          %div.alert.alert-danger
-            #{devise_error_messages!}
       = yield

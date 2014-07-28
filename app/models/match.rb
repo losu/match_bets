@@ -11,33 +11,38 @@ class Match < ActiveRecord::Base
 	# :team_score_2
 
 	def evaluate_points()
-		 if current_user.admin
+		 # if current_user.admin
 			@match=Match.find(self.id)
 			@bets=Bet.where(match_id: @match.id)
 			@bets.each do |b|
 				b.points = 10
-				if @match.deadline > Time.now
+				# if @match.deadline > Time.now
 					if ((b.team_score1 == @match.team_score_1) && (b.team_score2 == @match.team_score_2))
 						b.points = 4
+												# puts 'cokolwiek1'
 					elsif ((b.team_score1 > b.team_score2) && (@match.team_score_1 > @match.team_score_2))
 						b.points = 1
+												# puts 'cokolwiek2'
 					elsif ((b.team_score1 < b.team_score2) && (@match.team_score_1 < @match.team_score_2))
 						b.points = 1
+												# puts 'cokolwiek3'
 					elsif ((b.team_score1 == b.team_score2) && (@match.team_score_1 == @match.team_score_2))
 						b.points = 1
+												# puts 'cokolwiek4'
 					else
 						b.points = 0
+												# puts 'cokolwiek5'
 					end
 					
-					redirect_to match_path, notice: "poszly"
-				else
-					redirect_to root_url, notice: "mecz jeszcze sie nie skonczyl"
-				end
-				b.save
+				# 	redirect_to match_path, notice: "poszly"
+				# else
+				# 	redirect_to root_url, notice: "mecz jeszcze sie nie skonczyl"
+				# end
+				# b.save
 			end
-		else 
-			redirect_to root_url, alert: "nie masz uprawnien do tego"		
-		end
+		# else 
+		# 	redirect_to root_url, alert: "nie masz uprawnien do tego"		
+		# end
 	end
 
 
