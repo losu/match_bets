@@ -17,7 +17,7 @@ class BetsController < ApplicationController
 		@bet.group_id = params[:bet][:group_id]
 		@bet.match_id = params[:bet][:match_id]
 		if @bet.save
-			redirect_to root_url, notice: "utworzono zakład"
+			redirect_to group_path(params[:bet][:group_id]), notice: "utworzono zakład"
 		else
 			render 'new', notice: "nie poszla walidacja" 
 		end

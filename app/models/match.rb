@@ -1,5 +1,5 @@
 class Match < ActiveRecord::Base
-	before_validation :set_scores_to_zero, :set_date
+	# before_create :set_scores_to_zero, :set_date
 
 	validates :team_name_1, presence: true
 	validates :team_name_2, presence: true
@@ -11,7 +11,7 @@ class Match < ActiveRecord::Base
 	# :team_score_2
 
 	def evaluate_points()
-		# if @current_user.admin
+		 if current_user.admin
 			@match=Match.find(self.id)
 			@bets=Bet.where(match_id: @match.id)
 			@bets.each do |b|
@@ -29,14 +29,14 @@ class Match < ActiveRecord::Base
 						b.points = 0
 					end
 					
-				# 	redirect_to match_path, notice: "poszly"
-				# else
-				# 	redirect_to root_url, notice: "mecz jeszcze sie nie skonczyl"
-				# end
+					redirect_to match_path, notice: "poszly"
+				else
+					redirect_to root_url, notice: "mecz jeszcze sie nie skonczyl"
+				end
 				b.save
 			end
-		# else 
-		# 	redirect_to root_url, alert: "nie masz uprawnien do tego"		
+		else 
+			redirect_to root_url, alert: "nie masz uprawnien do tego"		
 		end
 	end
 
