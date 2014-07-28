@@ -1,6 +1,8 @@
 .body
   .container  
-    %h2 Welcome
+    %h2 Panel użytkownika 
+    %h3= @user.email
+
     / - if current_user
     /   %h3
     /     Czesc #{current_user.email}

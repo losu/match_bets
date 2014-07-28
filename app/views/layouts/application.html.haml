@@ -53,7 +53,7 @@
               - if current_user
                 - if current_user.provider == "facebook"
                   %li
-                    %a{href: "#"}= current_user.name
+                    = link_to current_user.name, user_path(current_user.id)
                 - else
                   %li
                     %a{href: "#"}= current_user.nickname
