@@ -24,8 +24,8 @@ describe "evaluate points:" do
     bet3=Bet.create(id: 999, match_id: match.id, user_id: @user2.id, group_id: group.id, team_score1: 7, team_score2: 0, points: 0)
     bet4=Bet.create(id: 9999, match_id: match.id, user_id: @user2.id, group_id: group.id, team_score1: 2, team_score2: 2, points: 0)
     match.evaluate_points
-    expect(bet2.points).to eq(4)  
+    expect(bet2.points).to eq(4)
     group.create_ranking
-    expect(groupset2.points_in_group).to eq(1)  
+    expect(groupset2.points_in_group).to eq(1)
   end
 end
