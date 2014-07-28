@@ -31,7 +31,7 @@
                     %span.caret
                   %ul.dropdown-menu{role: "menu"}
                     %li.divider
-                    %li= link_to "Utwórz grupę", new_group_path
+                    %li= link_to "Twórz grupe", new_group_path
                     %li.divider
                     / Tutaj foreach wyswietlajacy grupy
                     - current_user.groups.each do |group|
@@ -46,7 +46,7 @@
                       %span.caret
                     %ul.dropdown-menu{role: "menu"}
                       / Tutaj foreach wyswietlajacy grupy
-                      %li= link_to 'Lista Meczów', matches_path
+                      %li= link_to 'Lista meczów', matches_path
                       %li= link_to 'Dodaj mecz', new_match_path
                       / Koniec foreacha
             %ul.nav.navbar-nav.navbar-right
@@ -58,12 +58,12 @@
                   %li
                     %a{href: "#"}= current_user.nickname
                 %li
-                  = link_to 'Wyloguj sie!', destroy_user_session_path, method: :delete
+                  = link_to 'Wyloguj się!', destroy_user_session_path, method: :delete
               - else
                 %li
-                  = link_to 'Zaloguj sie!', new_user_session_path
+                  = link_to 'Zaloguj się!', new_user_session_path
                 %li
-                  = link_to 'Zarejestruj sie', new_user_registration_path
+                  = link_to 'Zarejestruj się!', new_user_registration_path
           / /.navbar-collapse
         / /.container-fluid
       / /.Navbar

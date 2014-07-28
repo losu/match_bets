@@ -1,13 +1,13 @@
 .body
-  .container  
+  .container
     %h2 Welcome
-    - if current_user
-      %h3
-        Czesc #{current_user.email}
-      = link_to 'Wyloguj sie!', destroy_user_session_path, method: :delete
-    - else
-      %h3 Siema gosciu !
-      = link_to 'Zarejestruj sie', new_user_registration_path
-      %br/
-      = link_to 'Zaloguj sie!', 
-        new_user_session_path   
+    / - if current_user
+    /   %h3
+    /     Czesc #{current_user.email}
+    /     = link_to 'Wyloguj sie!', destroy_user_session_path, method: :delete
+    / - else
+    /   %h3 Siema gosciu !
+    /   = link_to 'Zarejestruj sie', new_user_registration_path
+    /   %br/
+    /   = link_to 'Zaloguj sie!',
+    /   new_user_session_path
