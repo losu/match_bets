@@ -1,7 +1,7 @@
 #coding: UTF-8
 
 class GroupsController < ApplicationController
-		before_action :authenticate_user!, only: [ :new, :create]
+		before_action :authenticate_user! #, only: [ :new, :create]
 		helper_method :sendmail
 
 	def index
