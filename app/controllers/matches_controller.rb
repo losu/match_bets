@@ -27,7 +27,6 @@ class MatchesController < ApplicationController
 		@match = Match.new(match_params)
 		@match.team_score_1 = 0
 		@match.team_score_2 = 0
-		@match.deadline = Date.tomorrow
 		if @match.save
 			redirect_to matches_path
 		else
