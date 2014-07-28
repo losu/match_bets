@@ -1,0 +1,11 @@
+.container
+  %h1 Edit user
+  = form_for(@user) do |f|
+    - @user.errors.full_messages.each do |err|
+      %li
+        = err
+    .form-group
+      = f.label :nicname
+      = f.text_field :nickname, class: 'form-control'
+
+      = f.submit 'Edytuj', class: 'btn btn-primary'

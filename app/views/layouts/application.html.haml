@@ -5,9 +5,11 @@
   %html
     %head
       %title MatchBets
-      = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = stylesheet_link_tag    'application', media: 'all'
+      = javascript_include_tag 'application'
       = csrf_meta_tags
+      %link{href: "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css", rel: "stylesheet"}
+      %link{href: "http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css", media: "screen", rel: "stylesheet", type: "text/css"}
     %body
       / Navbar
       %nav.navbar.navbar-default{role: "navigation"}
@@ -27,11 +29,11 @@
                 %li.dropdown
                   / Tutaj chcialbym aby sie rozwijała lista grup
                   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                    Twoje grupy
+                    My groups
                     %span.caret
                   %ul.dropdown-menu{role: "menu"}
                     %li.divider
-                    %li= link_to "Twórz grupe", new_group_path
+                    %li= link_to "Create group", new_group_path
                     %li.divider
                     / Tutaj foreach wyswietlajacy grupy
                     - current_user.groups.each do |group|
@@ -46,8 +48,8 @@
                       %span.caret
                     %ul.dropdown-menu{role: "menu"}
                       / Tutaj foreach wyswietlajacy grupy
-                      %li= link_to 'Lista meczów', matches_path
-                      %li= link_to 'Dodaj mecz', new_match_path
+                      %li= link_to 'List of matches', matches_path
+                      %li= link_to 'Add match', new_match_path
                       / Koniec foreacha
             %ul.nav.navbar-nav.navbar-right
               - if current_user
@@ -58,12 +60,12 @@
                   %li
                     %a{href: "#"}= current_user.nickname
                 %li
-                  = link_to 'Wyloguj się!', destroy_user_session_path, method: :delete
+                  = link_to 'Sign out', destroy_user_session_path, method: :delete
               - else
                 %li
-                  = link_to 'Zaloguj się!', new_user_session_path
+                  = link_to 'Sign in', new_user_session_path
                 %li
-                  = link_to 'Zarejestruj się!', new_user_registration_path
+                  = link_to 'Sign up ', new_user_registration_path
           / /.navbar-collapse
         / /.container-fluid
       / /.Navbar
@@ -75,3 +77,6 @@
           %p.alert.alert-success
             notice: #{notice}
       = yield
+    %link{href: "/jquery.datetimepicker.css", rel: "stylesheet", type: "text/css"}
+    %script{src: "/jquery.js"}
+    %script{src: "/jquery.datetimepicker.js"}

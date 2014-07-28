@@ -1,8 +1,11 @@
 .body
   .container  
     %h2 Panel użytkownika 
-    %h3= @user.email
-
+    %br/
+    %h4= @user.name
+    %div
+      = @user.nickname
+      = link_to 'edit', edit_user_path, class: "btn btn-primary"
     / - if current_user
     /   %h3
     /     Czesc #{current_user.email}
@@ -11,5 +14,5 @@
     /   %h3 Siema gosciu !
     /   = link_to 'Zarejestruj sie', new_user_registration_path
     /   %br/
-    /   = link_to 'Zaloguj sie!', 
-    /     new_user_session_path   
+    /   = link_to 'Zaloguj sie!', /     new_user_session_path   
+    
