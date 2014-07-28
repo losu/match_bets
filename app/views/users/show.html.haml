@@ -2,8 +2,8 @@
   .container  
     %h2 Panel użytkownika 
     %h5= @user.name
-    %h5= @user.nickname
-
+    = @user.nickname
+    = link_to 'edit', edit_user_path
     / - if current_user
     /   %h3
     /     Czesc #{current_user.email}
