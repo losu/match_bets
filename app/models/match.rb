@@ -17,7 +17,6 @@ class Match < ActiveRecord::Base
 			@match=Match.find(self.id)
 			@bets=Bet.where(match_id: @match.id)
 			@bets.each do |b|
-				b.points = 10
 				if @match.deadline > Time.now
 					if ((b.team_score1 == @match.team_score_1) && (b.team_score2 == @match.team_score_2))
 						b.points = 4
