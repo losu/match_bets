@@ -34,6 +34,22 @@ class MatchesController < ApplicationController
 		end
 	end
 
+	# def generate
+	# 	@match = Match.find(1)
+	# end
+	def evaluate_for_match
+		@match = Match.find(params[:id])
+		if @match 
+			@match.evaluate_points
+			@groups=Group.all
+			@groups.each do |g|
+				g.create_ranking
+			end
+			redirect_to match_path(@match.id), notice: 'evaluated properly'
+		else
+			redirect_to match_path(@match.id), alert: 'not evaluated'
+		end
+	end
 	private
 		def match_params
 			params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)

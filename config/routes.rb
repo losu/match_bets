@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'invite/:token' => 'registrations#create'
   get 'group/:id' => 'groups#index'
+  post 'match/:id/evaluate_for_match' => 'matches#evaluate_for_match', as: 'evaluate_for_match'
   resources :mailer
   resources :groups
   resources :matches

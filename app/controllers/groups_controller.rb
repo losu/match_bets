@@ -13,6 +13,9 @@ class GroupsController < ApplicationController
 		@invite = Invite.new
 		@id = params[:id]
 		@matches = Match.where('deadline >= :time', :time=>Time.now)
+
+		@bets = Bet.where("group_id = #{@id}", "user_id = #{current_user.id}")
+
 	end
 
 	def new
