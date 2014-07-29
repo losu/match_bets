@@ -1,5 +1,6 @@
 .container
-  -groupset=Groupset.find(@id)
+  -groupset=Groupset.where(group_id: @id, user_id: current_user.id)
+  -groupset=groupset.first
   Points scored in this group:
   =groupset.points_in_group
 
