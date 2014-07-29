@@ -40,6 +40,7 @@ gem 'pg'
 gem 'haml'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'quiet_assets'
 
 
 group :development, :test do 

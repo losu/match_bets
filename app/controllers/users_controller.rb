@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     @user=current_user
   end
 
+  def new
+    @token = params[:invite_token]
+  end
+
   def edit
     @user=User.find(params[:id])
   end
@@ -24,7 +28,10 @@ class UsersController < ApplicationController
     else 
       render 'edit'
     end
+  end
     
+  def new
+    @token = params[:invite_token]
   end
 
 
