@@ -4,13 +4,14 @@ class InvitesController < ApplicationController
   
   def create
 		@invite=Invite.new(invite_params)
-		@from = current_user.email
-		@email = params[:invite][:email]
+		@invite.sender_id = current_user.id
 		@id = params[:invite][:group_id]
-		UserMailer.welcome_email(@email, @id, @from).deliver
-		@invite.email = @email
-		@invite.group_id = @id
+
+		# UserMailer.welcome_email(@invite).deliver
+		# UserMailer.welcome_email(@invite, new_user_registration_path(:invite_token => @invite.token))
+
 		@invite.save
+		UserMailer.welcome_email(@invite, new_user_registration_path(:invite_token => self.token).deliver
 		redirect_to group_path(@id)
 	end
 

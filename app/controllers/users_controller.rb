@@ -25,6 +25,8 @@ class UsersController < ApplicationController
       render 'edit'
     end
     
+  def new
+    @token = params[:invite_token]
   end
 
 
