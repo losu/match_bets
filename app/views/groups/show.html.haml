@@ -8,12 +8,15 @@
     %h1 Group name: 
     =@group.name 
 
-    = form_for @invite do |f|
-      = f.hidden_field :group_id, :value => @id
-      = f.label :email
-      = f.email_field :email, :value => @invite.email
-      = f.submit 'Send' 
-
+-if @group.owner == current_user.id
+  .container
+    .w50.center-block
+      %h4 Zaproś znajomych:
+      = form_for @invite do |f|
+        = f.hidden_field :group_id, :value => @id
+        = f.email_field :email, :value => @invite.email, placeholder: "E-mail"
+        %br
+        %input.btn.btn-primary.btn-small{type: "submit", value: "Wyślij"}/
 
 %center
   %h1 Available matches:

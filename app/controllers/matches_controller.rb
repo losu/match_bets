@@ -19,8 +19,14 @@ class MatchesController < ApplicationController
 	end
 
 	def new
-		@match = Match.new
+		if current_user.admin
+			@match = Match.new
+		else
+			redirect_to root_url, alert: "nie masz uprawnien gosciu!"
+		end
 	end
+
+
 
 	def create
 		@user = current_user

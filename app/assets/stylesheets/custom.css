@@ -4,4 +4,9 @@ body
   
 }
 
+.navbar.ournavbar .nav > li > a
+{
+  padding: 15px 15px;
+}
+
 
