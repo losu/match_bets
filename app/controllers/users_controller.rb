@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def new
-
+    @token = params[:invite_token]
   end
 
   # private
