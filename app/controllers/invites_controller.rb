@@ -12,6 +12,9 @@ class InvitesController < ApplicationController
 		if @invite.recipient == nil
 			UserMailer.new_user(@invite, new_user_registration_path(:invite_token => @invite.token)).deliver
 			redirect_to group_path(@id)
+		else
+			UserMailer.existing_user(@invite, groups_path(:invite_token => @invite.token)).deliver
+			redirect_to group_path(@id)
 		end
 	end
 

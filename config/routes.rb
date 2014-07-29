@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
 
   get 'invites/:token' => 'registrations#create'
-  get 'invites/:token' => 'groups#add'
+  get 'invites/:token' => 'group#add'
   get 'group/:id' => 'groups#index'
   resources :mailer
   resources :groups
