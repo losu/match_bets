@@ -5,11 +5,15 @@
     %br/
     = f.email_field :email, autofocus: true , class: "form-control",placeholder: :email
     %br/
+    %br/
     = f.password_field :password, autocomplete: "off", class: "form-control",placeholder: :password
+    %br/
     %br/
     = f.password_field :password_confirmation, autocomplete: "off", class: "form-control",placeholder: "password confirmation"
     %br/
+    %br/
     = f.submit "Sign up", class: "btn btn-lg btn-primary btn-block"
+    %br/
     %br/
     - if devise_mapping.omniauthable?
       - resource_class.omniauth_providers.each do |provider|
