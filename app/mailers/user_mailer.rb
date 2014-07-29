@@ -4,16 +4,20 @@ class UserMailer < ActionMailer::Base
     def new_user(invite, invite_token)
         @email = invite.email
         @from = User.find_by_id(invite.sender_id).email
-        @url = invite_token
+        @localhost = 'http://localhost:3000'
+        @url = @localhost+invite_token
         @id = invite.group_id
+        @group_name = Group.find_by_id(@id).name
         mail(to: @email, subject: 'Welcome to My Awesome Site')
     end
 
     def existing_user(invite, invite_token)
         @email = invite.email
         @from = User.find_by_id(invite.sender_id).email
-        @url = invite_token
+        @localhost = 'http://localhost:3000'
+        @url = @localhost+invite_token
         @id = invite.group_id
+        @group_name = Group.find_by_id(@id).name
         mail(to: @email, subject: 'Welcome to My Awesome Site')
     end
 
