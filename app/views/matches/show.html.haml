@@ -1,0 +1,23 @@
+%center
+  %h1 Match:
+.well
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th team 1
+        %th team 2
+        %th score 1
+        %th score 2
+        %th deadline
+      %thead
+        %tr
+          %th
+          %th #{@match.team_name_1}
+          %th #{@match.team_name_2}
+          %th #{@match.team_score_1}
+          %th #{@match.team_score_2}
+          %th #{@match.deadline}
+          %th= link_to 'evaluate', evaluate_for_match_path(id: @match.id), method: :post
+
+      
