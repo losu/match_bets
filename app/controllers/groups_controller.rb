@@ -9,13 +9,16 @@ class GroupsController < ApplicationController
 		if @token != nil
      		org =  Invite.find_by_token(@token).group_id
      		email = Invite.find_by_token(@token).email
-     		
-     		if email == current_user.email
-     			groupset = Groupset.new
-	 	  		groupset.user_id = current_user.id
-	 			groupset.group_id = org
-	 			groupset.points_in_group = 0
-	 			groupset.save
+      		check_groupset = Groupset.where(group_id: org, user_id: current_user.id)
+
+      		if email == current_user.email
+     			if check_groupset.blank?
+     				groupset = Groupset.new
+	 	  			groupset.user_id = current_user.id
+	 				groupset.group_id = org
+	 				groupset.points_in_group = 0
+	 				groupset.save
+	 			end
 	 		end
 	 	end
 		@groups = Group.all
