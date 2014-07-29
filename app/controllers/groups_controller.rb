@@ -19,6 +19,10 @@ class GroupsController < ApplicationController
 		@group = Group.new
 	end
 
+	def add
+		@token = params[:invite_token]
+	end
+
 	def create
 		@group=Group.new(group_params)
 		@group.active = true
