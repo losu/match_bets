@@ -5,6 +5,10 @@ class Match < ActiveRecord::Base
 	validates :deadline, presence: true
 	validates :team_score_1, presence: true
 	validates :team_score_2, presence: true
+	validate :check_team
+	# :deadline
+	# :team_score_1
+	# :team_score_2
 
 	def evaluate_points
 		 # if current_user.admin
@@ -35,6 +39,11 @@ class Match < ActiveRecord::Base
 		# end
 	end
 
+	def check_team
+		if team_name_1==team_name_2
+			 errors.add(:team_name_2, "nie momzna dodac 2 takich samych druzyn")
+		end
+	end
 
 
 	protected

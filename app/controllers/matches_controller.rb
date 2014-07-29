@@ -22,6 +22,8 @@ class MatchesController < ApplicationController
 		@match = Match.new
 	end
 
+
+
 	def create
 		@user = current_user
 		@match = Match.new(match_params)
