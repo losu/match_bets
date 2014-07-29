@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     else 
       render 'edit'
     end
+  end
     
   def new
     @token = params[:invite_token]
