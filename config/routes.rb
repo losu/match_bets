@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => 
   { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
 
-  get 'invite/:token' => 'registrations#create'
+  get 'invites/:token' => 'registrations#create'
+  get 'invites/:token' => 'groups#add'
   get 'group/:id' => 'groups#index'
   post 'match/:id/evaluate_for_match' => 'matches#evaluate_for_match', as: 'evaluate_for_match'
   resources :mailer
@@ -11,6 +12,10 @@ Rails.application.routes.draw do
   resources :bets
   resources :users do
     get "new"
+  end
+
+  resources :groups do
+    get "add"
   end
 
 
