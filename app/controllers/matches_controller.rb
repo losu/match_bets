@@ -25,6 +25,8 @@ class MatchesController < ApplicationController
 	def create
 		@user = current_user
 		@match = Match.new(match_params)
+		@match.team_score_1 = 0
+		@match.team_score_2 = 0
 		if @match.save
 			redirect_to matches_path
 		else

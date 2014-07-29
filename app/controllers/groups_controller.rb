@@ -1,7 +1,7 @@
 #coding: UTF-8
 
 class GroupsController < ApplicationController
-		before_action :authenticate_user!, only: [ :new, :create]
+		before_action :authenticate_user! #, only: [ :new, :create]
 		helper_method :sendmail
 
 	def index
@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
 		@group = Group.find(params[:id])
 		@invite = Invite.new
 		@id = params[:id]
-		@matches = Match.where('deadline <= :time', :time=>Time.now - 100)
+		@matches = Match.where('deadline >= :time', :time=>Time.now)
 	end
 
 	def new
