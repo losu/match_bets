@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def new
     @token = params[:invite_token]
+  end
   def edit
     @user=User.find(params[:id])
   end
