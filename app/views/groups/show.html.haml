@@ -30,15 +30,41 @@
         %th score 1
         %th score 2
         %th deadline
-    - @matches.each do |match|    
+    - @matches.each do |match|
+      - x = Bet.where(group_id:  @id, match_id:  match.id, user_id:  current_user.id)
+      - if x.blank?
+
+        %thead
+          %tr
+            %th
+            %th #{match.team_name_1}
+            %th #{match.team_name_2}
+            %th #{match.team_score_1}
+            %th #{match.team_score_2}
+            %th #{match.deadline}
+            %th 
+              =link_to "Obstaw",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id
+
+%center
+  %h1 Mecze obstawione:
+.well
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th team 1
+        %th team 2
+        %th score 1
+        %th score 2
+        %th deadline
+        %th your bet
+    - @bets.each do |bet|    
       %thead
         %tr
           %th
-          %th #{match.team_name_1}
-          %th #{match.team_name_2}
-          %th #{match.team_score_1}
-          %th #{match.team_score_2}
-          %th #{match.deadline}
-          %th 
-            =link_to "Obstaw",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id
-
+          %th #{bet.match.team_name_1}
+          %th #{bet.match.team_name_2}
+          %th #{bet.match.team_score_1}
+          %th #{bet.match.team_score_2}
+          %th #{bet.match.deadline}
+          %th #{bet.team_score1} : #{bet.team_score2}
