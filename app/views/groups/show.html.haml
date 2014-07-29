@@ -5,10 +5,8 @@
 
 .container
   .w50.center-block
-    %h1 Nazwa grupy: 
+    %h1 Group name: 
     =@group.name 
-    id: 
-    =@id
 
     = form_for @invite do |f|
       = f.hidden_field :group_id, :value => @id
@@ -18,7 +16,7 @@
 
 
 %center
-  %h1 Dostępne mecze:
+  %h1 Available matches:
 .well
   %table.table.table-striped
     %thead
@@ -42,10 +40,10 @@
             %th #{match.team_score_2}
             %th #{match.deadline}
             %th 
-              =link_to "Obstaw",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id
+              =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id
 
 %center
-  %h1 Mecze obstawione:
+  %h1 Your bets:
 .well
   %table.table.table-striped
     %thead

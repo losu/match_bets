@@ -1,21 +1,14 @@
 .container
 	.w50.center-block
 
-		Zalogowano jako:  
-		=current_user.email
-		=link_to "wyloguj", destroy_user_session_path, method: :delete 
-		%h1.text-center Dodaj grupę
+		%h1.text-center Add group
 		=form_for(@group) do |f|
 
 			.form-group
-			=f.label "Nazwa grupy: " 
+			=f.label "Group name: " 
 			%br
 			=f.text_field :name
 
 			%br
 	
-			=f.submit "Dodaj!", class: "btn, btn-primary"
-		
-		%br
-		%p
-		=link_to "Strona Główna", root_url
+			=f.submit "Add!", class: "btn, btn-primary"

@@ -7,11 +7,9 @@ class Match < ActiveRecord::Base
 	validates :team_score_2, presence: true
 
 	def evaluate_points
-		 # if current_user.admin
 			@match=Match.find(self.id)
 			@bets=Bet.where(match_id: @match.id)
 			@bets.each do |b|
-				# if @match.deadline > Time.now
 					if ((b.team_score1 == @match.team_score_1) && (b.team_score2 == @match.team_score_2))
 						b.points = 4
 					elsif ((b.team_score1 > b.team_score2) && (@match.team_score_1 > @match.team_score_2))
@@ -23,16 +21,8 @@ class Match < ActiveRecord::Base
 					else
 						b.points = 0
 					end
-					
-					# redirect_to match_path, notice: "poszly"
-				# else
-					# redirect_to match_path, notice: "mecz jeszcze sie nie skonczyl"
-				# end
 				b.save
 			end
-		# else 
-			# redirect_to root_url, alert: "nie masz uprawnien do tego"		
-		# end
 	end
 
 

@@ -42,8 +42,10 @@ class MatchesController < ApplicationController
 		if @match 
 			@match.evaluate_points
 			@groups=Group.all
-			@groups.each do |g|
-				g.create_ranking
+			unless @groups.count == 0
+				@groups.each do |g|
+					g.create_ranking
+				end
 			end
 			redirect_to match_path(@match.id), notice: 'evaluated properly'
 		else
