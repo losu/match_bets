@@ -5,7 +5,7 @@
     %h4= @user.name
     %div
       = @user.nickname
-      = link_to 'edit', edit_user_path, class: "btn btn-primary"
+      = link_to 'edit your profile', edit_user_registration_path, class: "btn btn-primary"
     / - if current_user
     /   %h3
     /     Czesc #{current_user.email}

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe MatchesController, type: :controller do
 	before(:each) do
-		@user = User.create(email:'test@test.pl', password:'testpassword')
+		@user = User.create(email:'test@test.pl', password:'testpassword',admin: true)
 		sign_in @user
 	end
 
