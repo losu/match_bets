@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'invites/:token' => 'group#add'
   get 'group/:id' => 'groups#index'
   post 'match/:id/evaluate_for_match' => 'matches#evaluate_for_match', as: 'evaluate_for_match'
+  post 'match/evaluate_all_matches' => 'matches#evaluate_all_matches', as: 'evaluate_all_matches'
   resources :mailer
   resources :groups
   resources :about
