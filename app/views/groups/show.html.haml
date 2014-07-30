@@ -15,13 +15,16 @@
           %tr
             %th Username
             %th E-mail
+            %th Points
         -@groupsets.each do |groupset|
           -@user_name = User.find_by_id(groupset.user_id).nickname
           -@user_email = User.find_by_id(groupset.user_id).email
+          -@user_points = groupset.points_in_group
           %thread
             %tr
               %th #{@user_name}
               %th #{@user_email}
+              %th #{@user_points}
     
 -if @group.owner == current_user.id
   .container
