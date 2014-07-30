@@ -8,7 +8,11 @@
   .w50.center-block
     %h1 Nazwa grupy: #{@group.name }
     %h3 Lista członków:
-    -member = Groupset.where(group_id: @group.id)
+    %ul
+      -@groupsets.each do |groupset|
+        %li
+          =@user = User.find_by_id(groupset.user_id).email
+
     
 -if @group.owner == current_user.id
   .container
