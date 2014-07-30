@@ -1,10 +1,9 @@
 .body
   .container  
-    %h2 Panel użytkownika 
+    %h2 User panel
     %br/
     %h4= @user.name
     %div
-      = @user.nickname
       = link_to 'edit your profile', edit_user_registration_path, class: "btn btn-primary"
     / - if current_user
     /   %h3

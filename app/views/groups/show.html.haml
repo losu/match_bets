@@ -6,18 +6,34 @@
 
 .container
   .w50.center-block
-    %h1 Nazwa grupy: #{@group.name }
-    %h3 Lista członków:
+
+    %h1 Group name: #{@group.name }
+    %h3 Members:
     %ul.list-group
       -@groupsets.each do |groupset|
         %li.list-group-item
           =@user = User.find_by_id(groupset.user_id).email
 
+    %h1 Groupname: #{@group.name }
+    %h3 Members:
+    .well
+      %table.table.table-striped
+        %thread
+          %tr
+            %th Username
+            %th E-mail
+        -@groupsets.each do |groupset|
+          -@user_name = User.find_by_id(groupset.user_id).nickname
+          -@user_email = User.find_by_id(groupset.user_id).email
+          %thread
+            %tr
+              %th #{@user_name}
+              %th #{@user_email}
     
 -if @group.owner == current_user.id
   .container
     .w50.center-block
-      %h4 Zaproś znajomych:
+      %h4 Invite friends:
       = form_for @invite do |f|
         = f.hidden_field :group_id, :value => @id
         = f.email_field :email, :value => @invite.email, placeholder: "E-mail"
@@ -26,8 +42,9 @@
 
 %center
   %h1 Available matches:
+.transparent
 .well
-  %table.table.table-striped
+  %table.table.table-striped.transparent
     %thead
       %tr
         %th #

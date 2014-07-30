@@ -6,15 +6,15 @@ describe "evaluate points:" do
   before :each do
     @user=User.create(id: 5, email: "test@example.com", password: "qwerty12345", admin: true)
     visit '/users/sign_in'
-    fill_in 'user_email',        :with => "test@example.com"
-    fill_in 'user_password',     :with => "qwerty12345"
+    fill_in 'user_email',               :with => "test@example.com"
+    fill_in 'user_password',            :with => "qwerty12345"
     find_button('Sign in').click
   end
 
   it 'generate points in all bets' do
     click_link('My groups')
     click_link('Create group')
-    fill_in 'group_name',        :with => "uber grupa 9000"
+    fill_in 'group_name',               :with => "uber grupa 9000"
     find_button('Add!').click
     click_link('Administrator panel')
     click_link('Add match')
