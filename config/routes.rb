@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'match/:id/evaluate_for_match' => 'matches#evaluate_for_match', as: 'evaluate_for_match'
   resources :mailer
   resources :groups
+  resources :about
   resources :matches
   resources :bets
   resources :users do
