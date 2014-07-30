@@ -10,14 +10,22 @@
         %th score 1
         %th score 2
         %th deadline
+        %th
     - @matches.each do |match|    
       %thead
         %tr
-          %th
-          %th #{match.team_name_1}
-          %th #{match.team_name_2}
-          %th #{match.team_score_1}
-          %th #{match.team_score_2}
-          %th #{match.deadline}
+          = form_for(match) do |f|
+            %th
+              =f.hidden_field :id, value: params[match.id]
+            %th #{match.team_name_1}
+            %th #{match.team_name_2}
+            %th
+              =f.text_field :team_score_1, value: params[team_score_1: match.team_score_1]
+            %th
+              =f.text_field :team_score_2, value: params[team_score_2: match.team_score_2]
+            %th #{match.deadline}
+            %th
+              =f.submit "Save!", class: "btn, btn-primary"
+
 
 			

@@ -34,6 +34,14 @@ class MatchesController < ApplicationController
 		end
 	end
 
+	def update
+		match = Match.where(:id)
+		match.team_score_1 = param[:team_score_1]
+		match.team_score_2 = param[:team_score_2]
+		match.save
+
+	end
+
 	private
 		def match_params
 			params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)
