@@ -6,14 +6,14 @@
 
 .container
   .w50.center-block
-    %h1 Nazwa grupy: #{@group.name }
-    %h3 Lista członków:
+    %h1 Group name: #{@group.name }
+    %h3 Members:
     -member = Groupset.where(group_id: @group.id)
     
 -if @group.owner == current_user.id
   .container
     .w50.center-block
-      %h4 Zaproś znajomych:
+      %h4 Invite friends:
       = form_for @invite do |f|
         = f.hidden_field :group_id, :value => @id
         = f.email_field :email, :value => @invite.email, placeholder: "E-mail"
