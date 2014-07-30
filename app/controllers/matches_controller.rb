@@ -36,7 +36,6 @@ class MatchesController < ApplicationController
 		end
 	end
 
-<<<<<<< HEAD
 
 	def update
 		match = Match.find(params[:id])
@@ -50,8 +49,7 @@ class MatchesController < ApplicationController
 	# def generate
 	# 	@match = Match.find(1)
 	# end
-=======
->>>>>>> 2680cf634fbc6620153cb6921a9fecf09d1a979c
+
 	def evaluate_for_match
 		@match = Match.find(params[:id])
 		if @match 
