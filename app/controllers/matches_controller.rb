@@ -51,6 +51,26 @@ class MatchesController < ApplicationController
 			redirect_to match_path(@match.id), alert: 'not evaluated'
 		end
 	end
+
+	def evaluate_all_matches
+		@matches = Match.all
+		unless @matches.count == 0
+			@matches.each do |match|
+				if match.deadline < Time.now
+					match.evaluate_points
+				end
+			end
+			@groups=Group.all
+			unless @groups.count == 0
+				@groups.each do |g|
+					g.create_ranking
+				end
+			end
+			redirect_to matches_path, notice: 'evaluated properly'
+		else
+			redirect_to matches_path, alert: 'not evaluated'
+		end
+	end
 	private
 		def match_params
 			params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)
