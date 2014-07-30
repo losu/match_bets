@@ -19,8 +19,14 @@ class MatchesController < ApplicationController
 	end
 
 	def new
-		@match = Match.new
+		if current_user.admin
+			@match = Match.new
+		else
+			redirect_to root_url, alert: "nie masz uprawnien gosciu!"
+		end
 	end
+
+
 
 	def create
 		@user = current_user
@@ -34,12 +40,33 @@ class MatchesController < ApplicationController
 		end
 	end
 
+
 	def update
 		match = Match.where(:id)
 		match.team_score_1 = param[:team_score_1]
 		match.team_score_2 = param[:team_score_2]
 		match.save
 
+	end
+
+
+	# def generate
+	# 	@match = Match.find(1)
+	# end
+	def evaluate_for_match
+		@match = Match.find(params[:id])
+		if @match 
+			@match.evaluate_points
+			@groups=Group.all
+			unless @groups.count == 0
+				@groups.each do |g|
+					g.create_ranking
+				end
+			end
+			redirect_to match_path(@match.id), notice: 'evaluated properly'
+		else
+			redirect_to match_path(@match.id), alert: 'not evaluated'
+		end
 	end
 
 	private

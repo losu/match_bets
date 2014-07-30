@@ -7,15 +7,19 @@ class Group < ActiveRecord::Base
 	has_many :invites
 
 	def create_ranking
-		@group=Group.find(self.id)
-		@groupsets = Groupset.where(group_id: @group.id)
-		@groupsets.each do |g|
-			g.points_in_group = 0
-			@bets=Bet.where(group_id: g.group_id, user_id: g.user_id)
-			@bets.each do |b|
-				g.points_in_group += b.points
+		@groupsets = Groupset.where(group_id: self.id)
+		unless @groupsets.blank?
+			@groupsets.each do |g|
+				g.points_in_group = 0
+				# g.save
+				@bets=Bet.where(group_id: g.group_id, user_id: g.user_id)
+				unless @bets.blank? == 0
+					@bets.each do |b|
+						g.points_in_group += b.points.to_i
+					end
+				end
+				g.save
 			end
-			g.save
 		end
 	end
 end

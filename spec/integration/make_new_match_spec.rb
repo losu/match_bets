@@ -15,7 +15,8 @@ describe "make new match:" do
     visit '/matches/new'
     fill_in 'match_team_name_1',  :with => "san marino"
     fill_in 'match_team_name_2',  :with => "korea północna"
-    find_button('Dodaj').click
-    expect(page).to have_content ("Lista meczów:")
+    fill_in 'datetimepicker',     :with => "2015/01/01 12:34"
+    find_button('Add!').click
+    expect(page).to have_content ("Matches list:")
   end
 end

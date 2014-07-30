@@ -1,5 +1,5 @@
 %center
-  %h1 Lista meczów:
+  %h1 Matches list:
 .well
   %table.table.table-striped
     %thead
@@ -15,6 +15,7 @@
       %thead
         %tr
           = form_for(match) do |f|
+            %th= link_to 'evaluate', evaluate_for_match_path(id: match.id), method: :post
             %th
               =f.hidden_field :id, value: params[match.id]
             %th #{match.team_name_1}
@@ -26,6 +27,5 @@
             %th #{match.deadline}
             %th
               =f.submit "Save!", class: "btn, btn-primary"
-
 
 			

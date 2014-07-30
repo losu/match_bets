@@ -1,25 +1,26 @@
 .container
-  Zalogowany jako: 
-  =current_user.email
-
-  =link_to "wyloguj", destroy_user_session_path, method: :delete
+  -groupset=Groupset.where(group_id: @id, user_id: current_user.id)
+  -groupset=groupset.first
+  Points scored in this group:
+  =groupset.points_in_group
 
 .container
   .w50.center-block
-    %h1 Nazwa grupy: 
+    %h1 Group name: 
     =@group.name 
-    id: 
-    =@id
 
-    = form_for @invite do |f|
-      = f.hidden_field :group_id, :value => @id
-      = f.label :email
-      = f.email_field :email, :value => @invite.email
-      = f.submit 'Send' 
-
+-if @group.owner == current_user.id
+  .container
+    .w50.center-block
+      %h4 Zaproś znajomych:
+      = form_for @invite do |f|
+        = f.hidden_field :group_id, :value => @id
+        = f.email_field :email, :value => @invite.email, placeholder: "E-mail"
+        %br
+        %input.btn.btn-primary.btn-small{type: "submit", value: "Wyślij"}/
 
 %center
-  %h1 Dostępne mecze:
+  %h1 Available matches:
 .well
   %table.table.table-striped
     %thead
@@ -43,10 +44,10 @@
             %th #{match.team_score_2}
             %th #{match.deadline}
             %th 
-              =link_to "Obstaw",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id
+              =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id
 
 %center
-  %h1 Mecze obstawione:
+  %h1 Your bets:
 .well
   %table.table.table-striped
     %thead
@@ -58,6 +59,7 @@
         %th score 2
         %th deadline
         %th your bet
+        %th points
     - @bets.each do |bet|    
       %thead
         %tr
@@ -68,3 +70,4 @@
           %th #{bet.match.team_score_2}
           %th #{bet.match.deadline}
           %th #{bet.team_score1} : #{bet.team_score2}
+          %th #{bet.points}
