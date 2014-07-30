@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get "new"
   end
 
+
+
   resources :invites
 
  	root 'users#index'

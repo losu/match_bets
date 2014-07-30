@@ -4,11 +4,36 @@
   Points scored in this group:
   =groupset.points_in_group
 
+
 .container
   .w50.center-block
     %h1 Nazwa grupy: #{@group.name }
     %h3 Lista członków:
     -member = Groupset.where(group_id: @group.id)
+
+%a.second{href: "#modal"} Link text
+#modal{style: "display:none"}
+  %h2 Rank
+  %table.table.table-striped
+    %thead
+      %tr
+        %th 
+        %th Nickname
+        %th Score
+    - @groupsets.each do |groupmem|
+      %thead
+        %tr
+          %th
+          %th
+            -if groupmem.user.name == nil
+              =groupmem.user.nickname
+            -else
+              =groupmem.user.name
+          %th 
+            =groupmem.points_in_group
+  %a{href: "javascript:$.pageslide.close()"} Close
+:javascript
+  $(".second").pageslide({ direction: "left", modal: true });
     
 -if @group.owner == current_user.id
   .container
