@@ -1,13 +1,12 @@
 .container
     .w50.center-block
-
         %h1 Lista grup:
-        %ul
+        %ul.list-group
         -if current_user
             -if current_user.groups.count == 0
                 %h3 Brak grup
             -else
                 -current_user.groups.each do |group|
-                    %li
+                    %li.list-group-item 
                         =group.name
                         =link_to "Zobacz", group_path(group.id), method: :get

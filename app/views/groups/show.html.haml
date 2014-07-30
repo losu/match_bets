@@ -8,9 +8,9 @@
   .w50.center-block
     %h1 Nazwa grupy: #{@group.name }
     %h3 Lista członków:
-    %ul
+    %ul.list-group
       -@groupsets.each do |groupset|
-        %li
+        %li.list-group-item
           =@user = User.find_by_id(groupset.user_id).email
 
     
