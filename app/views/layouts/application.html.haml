@@ -48,8 +48,11 @@
                       %span.caret
                     %ul.dropdown-menu{role: "menu"}
                       / Tutaj foreach wyswietlajacy grupy
+                      %li.nav-divider
                       %li= link_to 'List of matches', matches_path
+                      %li.nav-divider
                       %li= link_to 'Add match', new_match_path
+                      %li.nav-divider
                       / Koniec foreacha
               %li
                 %a{href: about_index_path} About 
