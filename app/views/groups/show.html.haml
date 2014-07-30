@@ -6,9 +6,13 @@
 
 .container
   .w50.center-block
+
     %h1 Group name: #{@group.name }
     %h3 Members:
-    -member = Groupset.where(group_id: @group.id)
+    %ul.list-group
+      -@groupsets.each do |groupset|
+        %li.list-group-item
+          =@user = User.find_by_id(groupset.user_id).email
     
 -if @group.owner == current_user.id
   .container
