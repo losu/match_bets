@@ -9,13 +9,6 @@
 
     %h1 Group name: #{@group.name }
     %h3 Members:
-    %ul.list-group
-      -@groupsets.each do |groupset|
-        %li.list-group-item
-          =@user = User.find_by_id(groupset.user_id).email
-
-    %h1 Groupname: #{@group.name }
-    %h3 Members:
     .well
       %table.table.table-striped
         %thread
