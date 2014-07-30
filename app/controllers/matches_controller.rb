@@ -42,11 +42,11 @@ class MatchesController < ApplicationController
 
 
 	def update
-		match = Match.where(:id)
-		match.team_score_1 = param[:team_score_1]
-		match.team_score_2 = param[:team_score_2]
+		match = Match.find(params[:id])
+		match.team_score_1 = match_params[:team_score_1]
+		match.team_score_2 = match_params[:team_score_2]
 		match.save
-
+		redirect_to matches_path, notice: "Score saved !"
 	end
 
 
