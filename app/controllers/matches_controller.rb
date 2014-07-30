@@ -36,6 +36,20 @@ class MatchesController < ApplicationController
 		end
 	end
 
+
+	def update
+		match = Match.find(params[:id])
+		match.team_score_1 = match_params[:team_score_1]
+		match.team_score_2 = match_params[:team_score_2]
+		match.save
+		redirect_to matches_path, notice: "Score saved !"
+	end
+
+
+	# def generate
+	# 	@match = Match.find(1)
+	# end
+
 	def evaluate_for_match
 		@match = Match.find(params[:id])
 		if @match 
@@ -51,6 +65,7 @@ class MatchesController < ApplicationController
 			redirect_to match_path(@match.id), alert: 'not evaluated'
 		end
 	end
+
 	private
 		def match_params
 			params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)
