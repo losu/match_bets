@@ -2,28 +2,24 @@
 
 class MatchesController < ApplicationController
 	before_action :authenticate_user!, only: [ :new, :create]
-	#before_action :check_id_admin, only: [ :new, :create]
+	before_action :check_if_admin
 
 	def index
-		@matches = Match.all
+			@matches = Match.all
 	end
 
 	def show
-		@match = Match.find(params[:id])
+			@match = Match.find(params[:id])
 	end
 
-	def delete
+	def destroy
 		@match = Match.find(param[:id])
 		@match.destroy
 		redirect_to root_url
 	end
 
 	def new
-		if current_user.admin
 			@match = Match.new
-		else
-			redirect_to root_url, alert: "nie masz uprawnien gosciu!"
-		end
 	end
 
 
@@ -40,9 +36,6 @@ class MatchesController < ApplicationController
 		end
 	end
 
-	# def generate
-	# 	@match = Match.find(1)
-	# end
 	def evaluate_for_match
 		@match = Match.find(params[:id])
 		if @match 
@@ -65,7 +58,7 @@ class MatchesController < ApplicationController
 
 		def check_if_admin
 			unless current_user.admin
-				redirect_to root_url, alert: 'Nie masz uprawnień!'
+				redirect_to root_url, alert: "You don't have permission to do this"
 			end
 		end
 

@@ -2,23 +2,22 @@ class UserMailer < ActionMailer::Base
   default from: "from@example.com"
 
     def new_user(invite, invite_token)
-        @email = invite.email
-        @from = User.find_by_id(invite.sender_id).email
-        @localhost = 'http://localhost:3000'
-        @url = @localhost+invite_token
-        @id = invite.group_id
-        @group_name = Group.find_by_id(@id).name
-        mail(to: @email, subject: 'Welcome to My Awesome Site')
+        @recipient_email = invite.email
+        @sender_email = User.find_by_id(invite.sender_id).email
+        @sender_nickname = User.find_by_id(invite.sender_id).nickname
+        @url = 'http://localhost:3000'+invite_token
+        @group_name = Group.find_by_id(invite.group_id).name
+        mail(to: @recipient_email, subject: 'Welcome to My Awesome Site')
     end
 
     def existing_user(invite, invite_token)
-        @email = invite.email
-        @from = User.find_by_id(invite.sender_id).email
-        @localhost = 'http://localhost:3000'
-        @url = @localhost+invite_token
-        @id = invite.group_id
-        @group_name = Group.find_by_id(@id).name
-        mail(to: @email, subject: 'Welcome to My Awesome Site')
+        @recipient_email = invite.email
+        @sender_email = User.find_by_id(invite.sender_id).email
+        @recipient_nickname = User.find_by_id(invite.recipient_id).nickname
+        @sender_nickname = User.find_by_id(invite.sender_id).nickname
+        @url = 'http://localhost:3000'+invite_token
+        @group_name = Group.find_by_id(invite.group_id).name
+        mail(to: @recipient_email, subject: 'Welcome to My Awesome Site')
     end
 
 
