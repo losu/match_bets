@@ -45,11 +45,6 @@ class MatchesController < ApplicationController
 		redirect_to matches_path, notice: "Score saved !"
 	end
 
-
-	# def generate
-	# 	@match = Match.find(1)
-	# end
-
 	def evaluate_for_match
 		@match = Match.find(params[:id])
 		if @match 
@@ -85,7 +80,7 @@ class MatchesController < ApplicationController
 			redirect_to matches_path, alert: 'not evaluated'
 		end
 	end
-	
+
 	private
 		def match_params
 			params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)
