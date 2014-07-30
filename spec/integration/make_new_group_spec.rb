@@ -14,6 +14,7 @@ describe "make new group:" do
   it 'create new group' do
     visit '/groups/new'
     fill_in 'group_name',  :with => "uber grupa 9000"
+    print page.html
     find_button('Add!').click
     expect(page).to have_content ("Dodano grupę")
   end

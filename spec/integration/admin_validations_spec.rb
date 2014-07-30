@@ -11,7 +11,7 @@ before :each do
     find_button('Sign in').click
   end
 
-  it 'tries do add match' do
+  it 'tries do modify matches' do
     visit '/matches/new'
     expect(page).to have_content ("ALERT!: You don't have permission to do this")
     visit '/matches/1'
