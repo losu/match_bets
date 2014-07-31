@@ -41,6 +41,7 @@ class MatchesController < ApplicationController
 		match = Match.find(params[:id])
 		match.team_score_1 = match_params[:team_score_1]
 		match.team_score_2 = match_params[:team_score_2]
+		match.deadline = match_params[:deadline]
 		match.save
 		redirect_to matches_path, notice: "Score saved !"
 	end
@@ -55,9 +56,9 @@ class MatchesController < ApplicationController
 					g.create_ranking
 				end
 			end
-			redirect_to match_path(@match.id), notice: 'evaluated properly'
+			redirect_to matches_path, notice: 'evaluated properly'
 		else
-			redirect_to match_path(@match.id), alert: 'not evaluated'
+			redirect_to matches_path, alert: 'not evaluated'
 		end
 	end
 
