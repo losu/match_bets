@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :users do
     get "new"
   end
+  resources :groups do
+    get 'add'
+  end
 
 
 

@@ -24,11 +24,23 @@ class GroupsController < ApplicationController
 		@groups = Group.all
 	end
 
+	def add
+		@group_id = params[:group_id]
+		@match_id = params[:match_id]
+		@matchset = Matchset.new
+		@matchset.group_id = @group_id
+		@matchset.match_id = @match_id
+		@matchset.save
+
+		redirect_to group_path(@group_id)
+	end
+
 	def show
 		@group = Group.find(params[:id])
 		@invite = Invite.new
 		@id = params[:id]
 		@matches = Match.where('deadline >= :time', :time=>Time.now)
+		@matchsets = Matchset.where(group_id: @id)
 		@groupsets = Groupset.where(group_id: @id)
 		@bets = Bet.where(group_id: @id, user_id: current_user.id)
 
