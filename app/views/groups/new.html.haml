@@ -4,11 +4,11 @@
 		%h1.text-center Add group
 		=form_for(@group) do |f|
 		
-			.form-group
-				=f.label "Group name: " 
-				%br
-				=f.text_field :name
+			
+			=f.label "Group name: " 
+			%br
+			=f.text_field :name
 
-				%br
+			%br
 		
-				%button.btn.btn-primary.btn-lg{type: "submit"} Add!
+			%button.btn.btn-primary.btn-lg{type: "submit", id: "add_button"} Add!
