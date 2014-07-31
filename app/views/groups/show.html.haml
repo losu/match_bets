@@ -83,6 +83,14 @@
             %th 
               =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => @match.id, :group_id => @id
 
+.dropdown
+  %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+    Add match
+    %span.caret
+  %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+    - @matches.each do |match|
+      %li{role: "presentation"}
+        %a{href: "#", role: "menuitem", tabindex: "-1"} #{match.team_name_1 + " vs " + match.team_name_2}
 %center
   %h1 Your bets:
 .well
