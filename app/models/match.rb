@@ -12,7 +12,7 @@ class Match < ActiveRecord::Base
 
 	def evaluate_points
 			@match=Match.find(self.id)
-			@bets=Bet.where(match_id: @match.id)
+			@bets=Bet.where(match_id: @match.id, evaluated: false)
 			@bets.each do |b|
 					if ((b.team_score1 == @match.team_score_1) && (b.team_score2 == @match.team_score_2))
 						b.points = 4
@@ -25,6 +25,8 @@ class Match < ActiveRecord::Base
 					else
 						b.points = 0
 					end
+					b.evaluated  = true
+
 				b.save
 			end
 	end
