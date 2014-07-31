@@ -24,24 +24,24 @@
   $(".second").pageslide({ direction: "right", modal: true });
 
 
-%h1 Group name: #{@group.name }
-%h3 Members:
-.well
-  %table.table.table-striped
-    %thread
-      %tr
-        %th Username
-        %th E-mail
-        %th Points
-    -@groupsets.each do |groupset|
-      -@user_name = User.find_by_id(groupset.user_id).nickname
-      -@user_email = User.find_by_id(groupset.user_id).email
-      -@user_points = groupset.points_in_group
-      %thread
-        %tr
-          %th #{@user_name}
-          %th #{@user_email}
-          %th #{@user_points}
+/ %h1 Group name: #{@group.name }
+/ %h3 Members:
+/ .well
+/   %table.table.table-striped
+/     %thread
+/       %tr
+/         %th Username
+/         %th E-mail
+/         %th Points
+/     -@groupsets.each do |groupset|
+/       -@user_name = User.find_by_id(groupset.user_id).nickname
+/       -@user_email = User.find_by_id(groupset.user_id).email
+/       -@user_points = groupset.points_in_group
+/       %thread
+/         %tr
+/           %th #{@user_name}
+/           %th #{@user_email}
+/           %th #{@user_points}
 
     
 -if @group.owner == current_user.id
@@ -70,7 +70,7 @@
     - @matches.each do |match|
       - x = Bet.where(group_id:  @id, match_id:  match.id, user_id:  current_user.id)
       - if x.blank?
-
+        
         %thead
           %tr
             %th
