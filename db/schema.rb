@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 20140731111125) do
   end
 
   create_table "invites", force: true do |t|
+    t.string   "email"
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "group_id"
-    t.string   "email"
   end
 
   create_table "matches", force: true do |t|
