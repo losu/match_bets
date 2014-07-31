@@ -94,7 +94,8 @@
       %li{role: "presentation"}
         -find = Matchset.where(group_id: @id, match_id: match.id)
         -if find.blank?
-          %a{href: group_add_path(:match_id => match.id, :group_id => @group.id), role: "menuitem", tabindex: "-1"} #{match.team_name_1 + " vs " + match.team_name_2}
+          -if Time.now < match.deadline
+            %a{href: group_add_path(:match_id => match.id, :group_id => @group.id), role: "menuitem", tabindex: "-1"}#{match.team_name_1 + " vs " + match.team_name_2}
 %center
   %h1 Your bets:
 .well
