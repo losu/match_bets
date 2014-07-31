@@ -1,6 +1,7 @@
 require 'spec_helper'
 include Capybara::DSL
 require 'capybara/rspec'
+include Warden::Test::Helpers
 
 describe "evaluate points:" do
   before :each do

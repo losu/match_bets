@@ -9,6 +9,7 @@ describe "make new group:" do
     fill_in 'user_email',        :with => "test@example.com"
     fill_in 'user_password',     :with => "qwerty12345"
     find_button('Sign in').click
+    # sign_in @user
   end
 
   it 'create new group' do

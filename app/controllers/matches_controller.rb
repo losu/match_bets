@@ -55,9 +55,9 @@ class MatchesController < ApplicationController
 					g.create_ranking
 				end
 			end
-			redirect_to match_path(@match.id), notice: 'evaluated properly'
+			redirect_to matches_path, notice: 'evaluated properly'
 		else
-			redirect_to match_path(@match.id), alert: 'not evaluated'
+			redirect_to matches_path, alert: 'not evaluated'
 		end
 	end
 
