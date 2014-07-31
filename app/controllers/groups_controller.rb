@@ -24,6 +24,10 @@ class GroupsController < ApplicationController
 		@groups = Group.all
 	end
 
+	def add
+		@id = params[:id]
+	end
+
 	def show
 		@group = Group.find(params[:id])
 		@invite = Invite.new
