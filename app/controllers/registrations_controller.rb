@@ -20,6 +20,12 @@ class RegistrationsController < Devise::RegistrationsController
 	 	end
   end
 
+  def destroy
+    Groupset.find_by(user_id: resource.id).destroy
+    super
+  end
+
+
   def update
     super
   end
