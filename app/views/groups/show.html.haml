@@ -25,23 +25,23 @@
 
 
 %h1 Group name: #{@group.name }
-%h3 Members:
-.well
-  %table.table.table-striped
-    %thread
-      %tr
-        %th Username
-        %th E-mail
-        %th Points
-    -@groupsets.each do |groupset|
-      -@user_name = User.find_by_id(groupset.user_id).nickname
-      -@user_email = User.find_by_id(groupset.user_id).email
-      -@user_points = groupset.points_in_group
-      %thread
-        %tr
-          %th #{@user_name}
-          %th #{@user_email}
-          %th #{@user_points}
+/ %h3 Members:
+/ .well
+/   %table.table.table-striped
+/     %thread
+/       %tr
+/         %th Username
+/         %th E-mail
+/         %th Points
+/     -@groupsets.each do |groupset|
+/       -@user_name = User.find_by_id(groupset.user_id).nickname
+/       -@user_email = User.find_by_id(groupset.user_id).email
+/       -@user_points = groupset.points_in_group
+/       %thread
+/         %tr
+/           %th #{@user_name}
+/           %th #{@user_email}
+/           %th #{@user_points}
 
     
 -if @group.owner == current_user.id
@@ -53,6 +53,7 @@
         = f.email_field  :email, :value => @invite.email, placeholder: "E-mail"
         %br
         %input.btn.btn-primary.btn-small{type: "submit", value: "Send"}/
+      %h1 Add match:
 
 %center
   %h1 Available matches:
@@ -67,21 +68,22 @@
         %th score 1
         %th score 2
         %th deadline
-    - @matchsets.each do |matchset|
-      - @match = Match.find(matchset.id)
-      - x = Bet.where(group_id:  @id, match_id:  @match.id, user_id:  current_user.id)
-      - if x.blank?
-      
-        %thead
-          %tr
-            %th
-            %th #{@match.team_name_1}
-            %th #{@match.team_name_2}
-            %th #{@match.team_score_1}
-            %th #{@match.team_score_2}
-            %th #{@match.deadline}
-            %th 
-              =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => @match.id, :group_id => @id
+    -if @matchsets.count > 0
+
+      - @matchsets.each do |matchset|
+        - @match = Match.find(matchset.match_id)
+        - x = Bet.where(group_id:  @id, match_id:  @match.id, user_id:  current_user.id)
+        - if x.blank?
+          %thead
+            %tr
+              %th
+              %th #{@match.team_name_1}
+              %th #{@match.team_name_2}
+              %th #{@match.team_score_1}
+              %th #{@match.team_score_2}
+              %th #{@match.deadline}
+              %th 
+                =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => @match.id, :group_id => @id
 
 .dropdown
   %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
@@ -90,7 +92,9 @@
   %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
     - @matches.each do |match|
       %li{role: "presentation"}
-        %a{href: "#", role: "menuitem", tabindex: "-1"} #{match.team_name_1 + " vs " + match.team_name_2}
+        -find = Matchset.where(group_id: @id, match_id: match.id)
+        -if find.blank?
+          %a{href: group_add_path(:match_id => match.id, :group_id => @group.id), role: "menuitem", tabindex: "-1"} #{match.team_name_1 + " vs " + match.team_name_2}
 %center
   %h1 Your bets:
 .well
