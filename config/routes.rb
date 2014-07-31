@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get "new"
   end
   resources :groups do
-    get 'add/:id' => 'groups#add'
+    get 'add'
   end
 
 

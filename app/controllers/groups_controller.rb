@@ -25,7 +25,14 @@ class GroupsController < ApplicationController
 	end
 
 	def add
-		@id = params[:id]
+		@group_id = params[:group_id]
+		@match_id = params[:match_id]
+		@matchset = Matchset.new
+		@matchset.group_id = @group_id
+		@matchset.match_id = @match_id
+		@matchset.save
+
+		redirect_to group_path(@group_id)
 	end
 
 	def show
