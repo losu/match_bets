@@ -84,18 +84,29 @@
               %th #{@match.deadline}
               %th 
                 =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => @match.id, :group_id => @id
-
-.dropdown
-  %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-    Add match
-    %span.caret
-  %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-    - @matches.each do |match|
-      %li{role: "presentation"}
-        -find = Matchset.where(group_id: @id, match_id: match.id)
-        -if find.blank?
-          -if Time.now < match.deadline
-            %a{href: group_add_path(:match_id => match.id, :group_id => @group.id), role: "menuitem", tabindex: "-1"}#{match.team_name_1 + " vs " + match.team_name_2}
+-if @matches.count > 0
+  -find_matches = Matchset.where(group_id: @id)
+  -unless find_matches.count == @matches.count
+    .dropdown
+      %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Add match
+        %span.caret
+      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+        - @matches.each do |match|
+          %li{role: "presentation"}
+            -find = Matchset.where(group_id: @id, match_id: match.id)
+            -if find.blank?
+              -if Time.now < match.deadline
+                %a{href: group_add_path(:match_id => match.id, :group_id => @group.id), role: "menuitem", tabindex: "-1"}#{match.team_name_1 + " vs " + match.team_name_2}
+  -else
+    .dropdown
+      %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Add match
+        %span.caret
+      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+        %li{role: "presentation"}
+          No matches available
+            
 %center
   %h1 Your bets:
 .well
