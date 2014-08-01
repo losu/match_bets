@@ -79,8 +79,8 @@
               %th
               %th #{@match.team_name_1}
               %th #{@match.team_name_2}
-              %th #{@match.team_score_1}
-              %th #{@match.team_score_2}
+              %th ?
+              %th ?
               %th #{@match.deadline}
               %th 
                 =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => @match.id, :group_id => @id
