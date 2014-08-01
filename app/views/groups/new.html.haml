@@ -1,13 +1,10 @@
 .container
 	.w50.center-block
-
-		%h1.text-center Add group
+		.page-header
+			%h2 Add Group
 		=form_for(@group) do |f|
 		
-			
-			=f.label "Group name: " 
-			%br
-			=f.text_field :name
+			=f.text_field :name, placeholder: "Group name"
 
 			%br
 		
