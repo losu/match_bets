@@ -19,14 +19,15 @@ describe "evaluate points:" do
     find_button('Add!').click
     click_link('Administrator panel')
     click_link('Add match')
-    fill_in 'match_team_name_1',        :with => "korea północna"
-    fill_in 'match_team_name_2',        :with => "korea południowa"
+    fill_in 'match_team_name_1',        :with => "aaa"
+    fill_in 'match_team_name_2',        :with => "bbb"
     fill_in 'datetimepicker',           :with => "2015/01/01 12:34"
     find_button('Add!').click
     click_link('My groups')
     click_link('uber grupa 9000')
     click_link('Add match')
-    click_link('korea północna vs korea południowa')
+    print page.html
+    find('aaa vs bbb').click
     click_link('Bet!')
     fill_in 'bet_team_score1',          :with => "0"
     fill_in 'bet_team_score2',          :with => "0"
