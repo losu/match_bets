@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
         @recipient_email = invite.email
         @sender_email = User.find_by_id(invite.sender_id).email
         @sender_nickname = User.find_by_id(invite.sender_id).nickname
-        @url = 'http://localhost:3000'+invite_token
+        @url = 'http://match-bets-app.herokuapp.com'+invite_token
         @group_name = Group.find_by_id(invite.group_id).name
         mail(to: @recipient_email, subject: 'Welcome to My Awesome Site')
     end
@@ -15,7 +15,7 @@ class UserMailer < ActionMailer::Base
         @sender_email = User.find_by_id(invite.sender_id).email
         @recipient_nickname = User.find_by_id(invite.recipient_id).nickname
         @sender_nickname = User.find_by_id(invite.sender_id).nickname
-        @url = 'http://localhost:3000'+invite_token
+        @url = 'http://match-bets-app.herokuapp.com'+invite_token
         @group_name = Group.find_by_id(invite.group_id).name
         mail(to: @recipient_email, subject: 'Welcome to My Awesome Site')
     end
