@@ -1,13 +1,79 @@
-.body
-  .container
-    %h2 Welcome
-    / - if current_user
-    /   %h3
-    /     Czesc #{current_user.email}
-    /     = link_to 'Wyloguj sie!', destroy_user_session_path, method: :delete
-    / - else
-    /   %h3 Siema gosciu !
-    /   = link_to 'Zarejestruj sie', new_user_registration_path
-    /   %br/
-    /   = link_to 'Zaloguj sie!',
-    /   new_user_session_path
+.container
+  .h1 Welcome
+
+  .custom-header.clearfix
+    %h2
+      Match Calendar
+    %h3.custom-month-year
+      %span#custom-month.custom-month
+      %span#custom-year.custom-year
+      %nav
+        %span#custom-prev.custom-prev
+        %span#custom-next.custom-next
+        %span#custom-current.custom-current{title: "Got to current date"}
+  #calendar.fc-calendar-container
+
+    / :javascript
+    /   $(function() {
+    /     $( '#calendar' ).calendario();
+
+
+    /   });
+
+    :javascript
+      $(function() {
+      
+        var cal = $( '#calendar' ).calendario( {
+
+            onDayClick : function( $el, $contentEl, dateProperties ) {
+
+              for( var key in dateProperties ) {
+                console.log( key + ' = ' + dateProperties[ key ] );
+              }
+
+            },
+             caldata : codropsEvents
+          } ),
+          $month = $( '#custom-month' ).html( cal.getMonthName() ),
+          $year = $( '#custom-year' ).html( cal.getYear() );
+
+          var matchList = gon.match_list;
+            for (index = 0; index < matchList.length; ++index) {
+              var entry = matchList[index];
+                var matchDate =  entry.deadline.substring(5, 7) + '-' + entry.deadline.substring(8, 10) + '-'  + entry.deadline.substring(0,4);
+                var jsonData = "{\"" + matchDate + "\": \"<a href='#' '>" + entry.team_name_1+" VS "+entry.team_name_2 + "</a>\"}";
+                cal.setData(JSON.parse(jsonData));
+            }
+
+        $( '#custom-next' ).on( 'click', function() {
+          cal.gotoNextMonth( updateMonthYear );
+        } );
+        $( '#custom-prev' ).on( 'click', function() {
+          cal.gotoPreviousMonth( updateMonthYear );
+        } );
+        $( '#custom-current' ).on( 'click', function() {
+          cal.gotoNow( updateMonthYear );
+        } );
+
+        function updateMonthYear() {        
+          $month.html( cal.getMonthName() );
+          $year.html( cal.getYear() );
+        }
+
+
+        // you can also add more data later on. As an example:
+        /*
+        someElement.on( 'click', function() {
+          
+          cal.setData( {
+            '03-08-2014' : '<a href="#">testing1</a>',
+            '04-08-2014' : '<a href="#">testing2</a>',
+            '05-08-2014' : '<a href="#">testing3</a>'
+          } );
+          // goes to a specific month/year
+          cal.goto( 3, 2013, updateMonthYear );
+
+        } );
+        */
+      
+      });
