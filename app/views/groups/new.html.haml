@@ -1,14 +1,6 @@
-.container
-	.w50.center-block
-
-		%h1.text-center Add group
-		=form_for(@group) do |f|
-		
-			
-			=f.label "Group name: " 
-			%br
-			=f.text_field :name
-
-			%br
-		
-			%button.btn.btn-primary.btn-lg{type: "submit", id: "add_button"} Add!
+=form_for(@group, html: {class: "form-signin"}) do |f|
+  %center
+    %h2.form-signin-heading Add Group
+    =f.text_field :name,  class: "form-control", placeholder: "Group name"
+    %br
+    %button.btn.btn-primary.btn-lg{type: "submit", id: "add_button"} Add!

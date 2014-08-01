@@ -1,12 +1,11 @@
 .container
     .w50.center-block
-        %h1 Lista grup:
+        %h2 Group list:
         %ul.list-group
         -if current_user
             -if current_user.groups.count == 0
-                %h3 Brak grup
+                %h3 You don't belong to any group
             -else
                 -current_user.groups.each do |group|
-                    %li.list-group-item 
-                        =group.name
-                        =link_to "Zobacz", group_path(group.id), method: :get
+                    %li.list-group-item
+                        =link_to group.name, group_path(group.id), method: :get
