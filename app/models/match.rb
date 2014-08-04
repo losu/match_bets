@@ -29,6 +29,8 @@ class Match < ActiveRecord::Base
 					b.evaluated  = true
 				b.save
 			end
+			@match.evaluated = true
+			@match.save
 	end
 
 	def check_team
