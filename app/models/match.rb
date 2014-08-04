@@ -32,8 +32,8 @@ class Match < ActiveRecord::Base
 	end
 
 	def check_team
-		if team_name_1==team_name_2
-			 errors.add(:team_name_2, "You can't add match with both teams having the same name")
+		if team_name_1.downcase==team_name_2.downcase
+			 errors.add(:err, "You can't add match with both teams having the same name")
 		end
 	end
 
