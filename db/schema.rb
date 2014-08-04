@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140804100731) do
     t.integer  "team_score_1"
     t.integer  "team_score_2"
     t.integer  "tournament_id"
+    t.boolean  "evaluated",     default: false
   end
 
   create_table "matchsets", force: true do |t|
