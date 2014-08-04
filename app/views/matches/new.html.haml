@@ -7,6 +7,8 @@
   = m.text_field :team_name_2, class: "form-control", placeholder: "Team 2"
   %br
   = m.text_field :deadline, class: "form-control", "data-format" => "dd-MM-yyyy hh:mm:ss", :id => "datetimepicker", placeholder: "Date"
+  - @match.errors.full_messages.each do |message|
+    .alert.alert-danger{role: "alert"} #{message}
  
   %center
     %button.btn.btn-primary.btn-lg{type: "submit"} Add!
