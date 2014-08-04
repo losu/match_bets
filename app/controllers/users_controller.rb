@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   #before_action :make_sure_its_mine
   
   def index
-    @user=User.all  
+    @user=User.all
+    gon.match_list = Match.all
   end
 
   def show
