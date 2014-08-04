@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731111125) do
+ActiveRecord::Schema.define(version: 20140804082122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140731111125) do
     t.datetime "deadline"
     t.integer  "team_score_1"
     t.integer  "team_score_2"
+    t.boolean  "evaluated",    default: false
   end
 
   create_table "matchsets", force: true do |t|
