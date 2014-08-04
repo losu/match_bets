@@ -26,7 +26,6 @@ describe "evaluate points:" do
     click_link('My groups')
     click_link('uber grupa 9000')
     click_link('Add match')
-    print page.html
     find('aaa vs bbb').click
     click_link('Bet!')
     fill_in 'bet_team_score1',          :with => "0"
