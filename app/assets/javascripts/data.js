@@ -124,4 +124,5 @@ var codropsEvents = {
 	'12-25-2012' : '<span>Christmas Day</span>',
 	'12-31-2012' : '<span>New Year\'s Eve</span>',
 	'08-08-2014' : '<a href="http://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/">Fullscreen Background Image Slideshow with CSS3</a>',
+	'08-28-2014' : 'Jakis mecz',
 };
