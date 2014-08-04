@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 20140804100731) do
   end
 
   create_table "invites", force: true do |t|
-    t.string   "email"
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "group_id"
+    t.string   "email"
   end
 
   create_table "matches", force: true do |t|
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 20140804100731) do
     t.datetime "deadline"
     t.integer  "team_score_1"
     t.integer  "team_score_2"
-    t.integer  "tournament_id"
     t.boolean  "evaluated",     default: false
+    t.integer  "tournament_id"
   end
 
   create_table "matchsets", force: true do |t|
