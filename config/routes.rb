@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     get 'add'
   end
 
+  resources :tournaments do
+    get 'addmatch'
+  end
+
 
 
   resources :invites
