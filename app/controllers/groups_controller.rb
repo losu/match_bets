@@ -10,7 +10,6 @@ class GroupsController < ApplicationController
      		org =  Invite.find_by_token(@token).group_id
      		email = Invite.find_by_token(@token).email
       		check_groupset = Groupset.where(group_id: org, user_id: current_user.id)
-
       		if email == current_user.email
      			if check_groupset.blank?
      				groupset = Groupset.new
@@ -33,7 +32,6 @@ class GroupsController < ApplicationController
 			@matchset.match_id = @match_id
 			@matchset.save
 		end
-
 		redirect_to group_path(@group_id)
 	end
 
@@ -45,7 +43,6 @@ class GroupsController < ApplicationController
 		@matchsets = Matchset.where(group_id: @id)
 		@groupsets = Groupset.where(group_id: @id)
 		@bets = Bet.where(group_id: @id, user_id: current_user.id)
-
 	end
 
 	def new
@@ -56,23 +53,16 @@ class GroupsController < ApplicationController
 		@group=Group.new(group_params)
 		@group.active = true
 		@group.owner = current_user.id
-
 		if @group.save
 			groupset = Groupset.new
 			groupset.user_id = current_user.id
 			groupset.group_id = @group.id
 			groupset.points_in_group = 0
 			groupset.save
-
-
 			redirect_to group_path(@group.id), notice: 'Dodano grupę.'
 		else
 			render :new
 		end
-	end
-
-	def group_stats
-
 	end
 
 		private
