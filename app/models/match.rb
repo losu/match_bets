@@ -27,14 +27,15 @@ class Match < ActiveRecord::Base
 						b.points = 0
 					end
 					b.evaluated  = true
-
 				b.save
 			end
 	end
 
 	def check_team
-		if team_name_1.downcase==team_name_2.downcase
-			 errors.add(:Error, "You can't add match with both teams having the same name")
+		if team_name_1.blank? || team_name_2.blank?
+			errors.add(:Error, "Name can't be blank")
+		elsif team_name_1.downcase==team_name_2.downcase
+			errors.add(:Error, "You can't add match with both teams having the same name")
 		end
 	end
 

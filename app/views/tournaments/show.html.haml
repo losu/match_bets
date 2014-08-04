@@ -1,5 +1,5 @@
 %h1 Tournaments:
-@tournament.name
+=@tournament.name
 .panel.panel-default
   .panel-heading Matches in tournament:
   %table.table.table-striped.table-condensed
@@ -12,3 +12,14 @@
         %tr
           %td #{match.team_name_1}
           %td #{match.team_name_2}
+  .dropdown
+    %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+      Add match
+      %span.caret
+    %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+      - @free_matches.each do |free_match|
+        %li{role: "presentation"}
+          / -find = Match.where(tournament_id: nil)
+          / -if match.tournament_id == nil
+          / -if Time.now < match.deadline
+          %a{href: tournament_addmatch_path(@tournament.id,:match_id => free_match.id, :id => @tournament.id), role: "menuitem", tabindex: "-1"}#{free_match.team_name_1 + " vs " +free_match.team_name_2}
