@@ -130,11 +130,21 @@
     - @bets.each do |bet|    
       %thead
         %tr
-          %td
-          %td #{bet.match.team_name_1}
-          %td #{bet.match.team_name_2}
-          %td #{bet.match.team_score_1}
-          %td #{bet.match.team_score_2}
-          %td #{bet.match.deadline}
-          %td #{bet.team_score1} : #{bet.team_score2}
-          %td #{bet.points}
+          -if bet.match.deadline > Time.now
+            %td
+            %td #{bet.match.team_name_1}
+            %td #{bet.match.team_name_2}
+            %td ?
+            %td ?
+            %td #{bet.match.deadline}
+            %td #{bet.team_score1} : #{bet.team_score2}
+            %td #{bet.points}
+          -else
+            %td
+            %td #{bet.match.team_name_1}
+            %td #{bet.match.team_name_2}
+            %td #{bet.match.team_score_1}
+            %td #{bet.match.team_score_2}
+            %td #{bet.match.deadline}
+            %td #{bet.team_score1} : #{bet.team_score2}
+            %td #{bet.points}

@@ -6,6 +6,7 @@ class Match < ActiveRecord::Base
 	validates :team_score_1, presence: true
 	validates :team_score_2, presence: true
 	validate :check_team
+	belongs_to :tournament
 	# :deadline
 	# :team_score_1
 	# :team_score_2
@@ -33,11 +34,9 @@ class Match < ActiveRecord::Base
 
 	def check_team
 		if team_name_1.downcase==team_name_2.downcase
-			 errors.add(:team_name_2, "You can't add match with both teams having the same name")
-
+			 errors.add(:Error, "You can't add match with both teams having the same name")
 		end
 	end
-
 
 	protected
 		def set_scores_to_zero
