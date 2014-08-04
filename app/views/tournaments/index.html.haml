@@ -1,0 +1,11 @@
+%h1 Tournaments
+.panel.panel-default
+  .panel-heading Available tournaments:
+  %table.table.table-striped.table-condensed
+    %thead
+      %tr
+        %th name
+    - @tournaments.each do |tournament|
+      %thead
+        %tr
+          %td #{tournament.name}

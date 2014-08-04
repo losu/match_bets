@@ -1,0 +1,14 @@
+%h1 Tournaments:
+@tournament.name
+.panel.panel-default
+  .panel-heading Matches in tournament:
+  %table.table.table-striped.table-condensed
+    %thead
+      %tr
+        %th team 1
+        %th team 2
+    - @matches.each do |match|
+      %thead
+        %tr
+          %td #{match.team_name_1}
+          %td #{match.team_name_2}
