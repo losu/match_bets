@@ -8,7 +8,9 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    @tournaments = Tournament.all
+    @id = params[:id]
+    @tournament = Tournament.find(params[:id])
+    @matches = Match.where(tournament_id: @id)
   end
 
   def create
