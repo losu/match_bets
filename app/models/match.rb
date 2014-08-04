@@ -6,6 +6,7 @@ class Match < ActiveRecord::Base
 	validates :team_score_1, presence: true
 	validates :team_score_2, presence: true
 	validate :check_team
+	belongs_to :tournament
 	# :deadline
 	# :team_score_1
 	# :team_score_2

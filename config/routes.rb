@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :about
   resources :matches
   resources :bets
+  resources :tournaments
   resources :users do
     get "new"
   end
