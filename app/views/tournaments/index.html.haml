@@ -8,4 +8,5 @@
     - @tournaments.each do |tournament|
       %thead
         %tr
-          %td #{tournament.name}
+          %td 
+            =link_to tournament.name, tournament_path(tournament.id)

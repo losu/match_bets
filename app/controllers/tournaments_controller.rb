@@ -11,6 +11,15 @@ class TournamentsController < ApplicationController
     @id = params[:id]
     @tournament = Tournament.find(params[:id])
     @matches = Match.where(tournament_id: @id)
+    @free_matches = Match.where(tournament_id: nil)
+  end
+
+  def addmatch
+    @match = Match.find(params[:match_id])
+    @tournament_id = params[:id]
+    @match.tournament_id = @tournament_id
+    @match.save
+    redirect_to tournament_path(@tournament_id)
   end
 
   def create
