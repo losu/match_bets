@@ -1,7 +1,7 @@
-#coding: UTF-8
+# coding: UTF-8
 
 class GroupsController < ApplicationController
-		before_action :authenticate_user! #, only: [ :new, :create]
+		before_action :authenticate_user! 
 		helper_method :sendmail
 
 	def index
@@ -65,13 +65,14 @@ class GroupsController < ApplicationController
 		end
 	end
 
-		private
-			def group_params
-				params.require(:group).permit(:name)		
-			end
+	private
 
-			def par
-				params.require(:group).permit(:id)
-			end
+		def group_params
+			params.require(:group).permit(:name)		
+		end
+
+		def par
+			params.require(:group).permit(:id)
+		end
 
 end
