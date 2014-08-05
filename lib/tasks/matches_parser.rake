@@ -17,14 +17,14 @@ namespace :matches_parser do
       tn1[0] = ''
       tn2 =  parsedmatches[i+2].text
       tn2[0] = ''
-      matches << Match.new(team_name_1: tn1, team_name_2: tn2, team_score_1: "0", team_score_2: "0", deadline: Time.now + 2.day)
+      matches << Match.new(team_name_1: tn1, team_name_2: tn2, team_score_1: "0", team_score_2: "0")
       i += 3
     end
-    # event = Tournament.new(name: "Mistrzostwa Świata 2014")
-    event = Tournament.create(name: "Mistrzostwa Świata 2014")
+    event = Tournament.new(name: "Mistrzostwa Świata 2014")
+    # event = Tournament.create(name: "Mistrzostwa Świata 2014")
     i = 0
-    matches.each do |kkk|
-      kkk.tournament_id = event.id
+    matches.each do |m|
+      m.tournament_id = event.id
       t = Time.now
       matchday = matchdata[i].text
       matchmonth = matchday[3,2]
@@ -32,9 +32,9 @@ namespace :matches_parser do
       t=t.change(day: matchday)
       t=t.change(month: matchmonth)
       t=t.change(year: 2015)
-      kkk.deadline = t
-      # puts kkk.team_name_1.to_s + " vs " + kkk.team_name_2.to_s + " " + t.to_s
-      kkk.save
+      m.deadline = t
+      puts m.team_name_1.to_s + " vs " + m.team_name_2.to_s + " " + t.to_s
+      # m.save
       i+=4
     end
   end
