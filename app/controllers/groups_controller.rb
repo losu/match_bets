@@ -74,7 +74,7 @@ class GroupsController < ApplicationController
 			groupset.group_id = @group.id
 			groupset.points_in_group = 0
 			groupset.save
-			redirect_to group_path(@group.id), notice: 'Dodano grupę.'
+			redirect_to group_path(@group.id), notice: "Group successfully created"
 		else
 			render :new
 		end
