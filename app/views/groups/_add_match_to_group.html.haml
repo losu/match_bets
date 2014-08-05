@@ -1,0 +1,22 @@
+-if @group.owner == current_user.id 
+  -if @matches.count > 0
+    -@find_matches
+    -unless @find_matches.count == @matches.count
+      .dropdown
+        %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+          Add match
+          %span.caret
+        %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+          - @matches.each do |match|
+            %li{role: "presentation"}
+              -if @matchset_exist[match.id]
+                -if Time.now < match.deadline
+                  =link_to match.team_name_1 + " vs " + match.team_name_2, group_add_path(:match_id => match.id, :group_id => @group.id), role: "menuitem", tabindex: "-1"
+    -else
+      .dropdown
+        %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+          Add match
+          %span.caret
+        %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+          %li{role: "presentation"}
+            No matches available

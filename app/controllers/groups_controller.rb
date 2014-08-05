@@ -53,11 +53,44 @@ class GroupsController < ApplicationController
 		@group = Group.find(params[:id])
 		@invite = Invite.new
 		@id = params[:id]
-		@matches = Match.where('deadline >= :time', :time=>Time.now)
-		@matchsets = Matchset.where(group_id: @id)
 		@groupsets = Groupset.where(group_id: @id)
 		@bets = Bet.where(group_id: @id, user_id: current_user.id)
+		
+		# ----- Available matches table ---------
+		matchsets = Matchset.where(group_id: @id)
+		@bet_visible = {}
+		@match_array = []
+		if matchsets.count > 0
+			matchsets.each do |matchset|
+				match = Match.find(matchset.match_id)
+				@match_array << match
+
+				bet = Bet.where(group_id:  @id, match_id:  match.id, user_id:  current_user.id)
+				if bet.blank?
+					@bet_visible[match.id] = true
+				else
+					@bet_visible[match.id] = false
+				end	
+			end
+		end
+		#---------------------------------------
+
+		#-----Add match to group----------------
+		@matches = Match.where('deadline >= :time', :time=>Time.now)
+		@find_matches = Matchset.where(group_id: @id)
+		@matchset_exist = {}
+
+		@matches.each do |match|
+			find_matchset = Matchset.where(group_id: @id, match_id: match.id)
+			if find_matchset.blank?
+				@matchset_exist[match.id] = true
+			else
+				@matchset_exist[match.id] = false
+			end	
+		end
+		#---------------------------------------
 		@tournaments = Tournament.all
+
 	end
 
 	def new
