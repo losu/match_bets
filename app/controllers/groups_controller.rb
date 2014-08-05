@@ -35,6 +35,20 @@ class GroupsController < ApplicationController
 		redirect_to group_path(@group_id)
 	end
 
+	def add_tournament
+		@group_id = params[:group_id]
+		@tournament_id = params[:tournament_id]
+		tournament_matches = Match.where(tournament_id: @tournament_id)
+
+		tournament_matches.each do |tournament_match|
+			@matchset = Matchset.new
+			@matchset.group_id = @group_id
+			@matchset.match_id = tournament_match.id
+			@matchset.save
+		end
+		redirect_to group_path(@group_id)
+	end
+
 	def show
 		@group = Group.find(params[:id])
 		@invite = Invite.new
@@ -43,6 +57,7 @@ class GroupsController < ApplicationController
 		@matchsets = Matchset.where(group_id: @id)
 		@groupsets = Groupset.where(group_id: @id)
 		@bets = Bet.where(group_id: @id, user_id: current_user.id)
+		@tournaments = Tournament.all
 	end
 
 	def new
