@@ -1,0 +1,37 @@
+- @matches.each do |match|    
+  %thead
+    %tr
+      = form_for(match, html: {class: "form-signin"}) do |f|
+        -unless match.evaluated
+          %th= link_to 'evaluate', evaluate_for_match_path(id: match.id), method: :post
+        -else
+          %th
+        %th 
+        -if match.evaluated || match.deadline < Time.now
+          %th #{match.team_name_1}
+          %th #{match.team_name_2}
+        -else 
+          %th 
+            =f.text_field :team_name_1, value: match.team_name_1, class: "form-control"
+          %th 
+            =f.text_field :team_name_2, value: match.team_name_2, class: "form-control"
+        -if match.deadline > Time.now
+          %th #{match.team_score_1}
+          %th #{match.team_score_2}
+          %th 
+            =f.text_field :deadline, value: match.deadline, class: "form-control, dtpicker", "data-format" => "dd-MM-yyyy hh:mm:ss", :id => "datetimepicker"
+          %th
+            =f.submit "Save!", class: "btn, btn-primary"
+        -elsif match.evaluated
+          %th #{match.team_score_1}
+          %th #{match.team_score_2}
+          %th #{match.deadline}
+        -else 
+          %th 
+            =f.text_field :team_score_1, value: match.team_score_1, class: "form-control"
+          %th 
+            =f.text_field :team_score_2, value: match.team_score_2, class: "form-control"
+          %th 
+            =f.text_field :deadline, value: match.deadline, class: "form-control, dtpicker", "data-format" => "dd-MM-yyyy hh:mm:ss", :id => "datetimepicker"
+          %th
+            =f.submit "Save!", class: "btn, btn-primary"
