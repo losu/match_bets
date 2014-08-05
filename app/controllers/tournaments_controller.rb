@@ -1,3 +1,5 @@
+# coding: UTF-8
+
 class TournamentsController < ApplicationController
   def index
     @tournaments = Tournament.all

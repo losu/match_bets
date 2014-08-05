@@ -1,7 +1,8 @@
-#encoding UTF-8
+# coding: UTF-8
+
 class Group < ActiveRecord::Base
-	validates :name, presence: true
-	validates :owner, presence: true
+	validates :name, :owner, presence: true
+	
 	has_many :groupsets
 	has_many :users, through: :groupsets
 	has_many :invites
@@ -11,7 +12,6 @@ class Group < ActiveRecord::Base
 		unless @groupsets.blank?
 			@groupsets.each do |g|
 				g.points_in_group = 0
-				# g.save
 				@bets=Bet.where(group_id: g.group_id, user_id: g.user_id)
 				unless @bets.blank? == 0
 					@bets.each do |b|
