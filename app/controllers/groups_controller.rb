@@ -1,7 +1,7 @@
-#coding: UTF-8
+# coding: UTF-8
 
 class GroupsController < ApplicationController
-		before_action :authenticate_user! #, only: [ :new, :create]
+		before_action :authenticate_user! 
 		helper_method :sendmail
 
 	def index
@@ -35,13 +35,26 @@ class GroupsController < ApplicationController
 		redirect_to group_path(@group_id)
 	end
 
+	def add_tournament
+		@group_id = params[:group_id]
+		@tournament_id = params[:tournament_id]
+		tournament_matches = Match.where(tournament_id: @tournament_id)
+
+		tournament_matches.each do |tournament_match|
+			@matchset = Matchset.new
+			@matchset.group_id = @group_id
+			@matchset.match_id = tournament_match.id
+			@matchset.save
+		end
+		redirect_to group_path(@group_id)
+	end
+
 	def show
 		@group = Group.find(params[:id])
 		@invite = Invite.new
 		@id = params[:id]
 		@groupsets = Groupset.where(group_id: @id)
 		@bets = Bet.where(group_id: @id, user_id: current_user.id)
-
 		
 		# ----- Available matches table ---------
 		matchsets = Matchset.where(group_id: @id)
@@ -76,6 +89,8 @@ class GroupsController < ApplicationController
 			end	
 		end
 		#---------------------------------------
+		@tournaments = Tournament.all
+
 	end
 
 	def new
@@ -92,19 +107,20 @@ class GroupsController < ApplicationController
 			groupset.group_id = @group.id
 			groupset.points_in_group = 0
 			groupset.save
-			redirect_to group_path(@group.id), notice: 'Dodano grupę.'
+			redirect_to group_path(@group.id), notice: "Group successfully created"
 		else
 			render :new
 		end
 	end
 
-		private
-			def group_params
-				params.require(:group).permit(:name)		
-			end
+	private
 
-			def par
-				params.require(:group).permit(:id)
-			end
+		def group_params
+			params.require(:group).permit(:name)		
+		end
+
+		def par
+			params.require(:group).permit(:id)
+		end
 
 end

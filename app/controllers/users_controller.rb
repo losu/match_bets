@@ -1,9 +1,7 @@
-#codding: UTF-8
+# coding: UTF-8
 
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-
-  #before_action :make_sure_its_mine
   
   def index
     @user=User.all
@@ -35,8 +33,8 @@ class UsersController < ApplicationController
     @token = params[:invite_token]
   end
 
-
   private 
+  
   def user_params
     params.require(:user).permit(:name,:nickname)
   end
