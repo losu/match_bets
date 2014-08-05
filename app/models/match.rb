@@ -42,6 +42,7 @@ class Match < ActiveRecord::Base
 	end
 
 	protected
+	
 		def set_scores_to_zero
 			self.team_score_1 = 0
 			self.team_score_2 = 0
