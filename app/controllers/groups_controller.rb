@@ -63,7 +63,9 @@ class GroupsController < ApplicationController
 		if matchsets.count > 0
 			matchsets.each do |matchset|
 				match = Match.find(matchset.match_id)
-				@match_array << match
+				if match.deadline > Time.now
+					@match_array << match
+				end
 
 				bet = Bet.where(group_id:  @id, match_id:  match.id, user_id:  current_user.id)
 				if bet.blank?
