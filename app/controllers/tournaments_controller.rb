@@ -27,9 +27,11 @@ class TournamentsController < ApplicationController
     if @tournament.save
       redirect_to tournaments_path
     else
-      render:new
+      render :new
     end
   end
+
+  private 
 
   def tournament_params
     params.require(:tournament).permit(:name)    

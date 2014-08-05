@@ -29,6 +29,8 @@ class Match < ActiveRecord::Base
 					b.evaluated  = true
 				b.save
 			end
+			@match.evaluated = true
+			@match.save
 	end
 
 	def check_team
@@ -40,6 +42,7 @@ class Match < ActiveRecord::Base
 	end
 
 	protected
+	
 		def set_scores_to_zero
 			self.team_score_1 = 0
 			self.team_score_2 = 0

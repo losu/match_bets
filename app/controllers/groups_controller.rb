@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
 	def add
 		@group_id = params[:group_id]
 		@match_id = params[:match_id]
-		if Match.find_by_id(@match_id).deadline > Time.now
+		if Match.find(@match_id).deadline > Time.now
 			@matchset = Matchset.new
 			@matchset.group_id = @group_id
 			@matchset.match_id = @match_id

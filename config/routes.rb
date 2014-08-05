@@ -24,8 +24,6 @@ Rails.application.routes.draw do
     get 'addmatch'
   end
 
-
-
   resources :invites
 
  	root 'users#index'

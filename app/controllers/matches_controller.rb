@@ -32,7 +32,7 @@ class MatchesController < ApplicationController
 		if @match.save
 			redirect_to matches_path
 		else
-			render:new
+			render :new
 		end
 	end
 
