@@ -1,0 +1,22 @@
+%a.second{href: "#modal"}
+  %button.btn.btn-primary.btn-large{type: "button"} Show Rank !
+#modal{style: "display:none"}
+  %h2 Rank
+  %table.table.table-striped
+    %thead
+      %tr
+        %th 
+        %th Nickname
+        %th Score
+    - @groupsets.each do |groupmem|
+      %thead
+        %tr
+          %th
+          %th
+            -if groupmem.user.name == nil
+              =groupmem.user.nickname
+            -else
+              =groupmem.user.name
+          %th 
+            =groupmem.points_in_group
+  %a{href: "javascript:$.pageslide.close()"} Close
