@@ -47,8 +47,11 @@ class MatchesController < ApplicationController
 			match.team_name_1 = match_params[:team_name_1]
 			match.team_name_2 = match_params[:team_name_2]
 		end
-		match.save
-		redirect_to matches_path, notice: match.errors.full_messages
+		if match.save
+			redirect_to matches_path, notice: 'saved'
+		else
+			redirect_to matches_path, alert: match.errors.full_messages
+		end 
 	end
 
 	def evaluate_for_match
