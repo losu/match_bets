@@ -9,6 +9,7 @@
         %th score 1
         %th score 2
         %th deadline
+        %th tournament
     - @match_array.each do |match|
       -if @bet_visible[match.id]
         %thead
@@ -19,5 +20,6 @@
             %td ?
             %td ?
             %td #{match.deadline}
-            %td 
+            %td #{Tournament.find(match.tournament_id).name}
+            %td
               =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id
