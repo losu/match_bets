@@ -1,4 +1,4 @@
-#coding UTF-8
+# coding: UTF-8
 
 class BetsController < ApplicationController
 	before_action :authenticate_user!
@@ -14,6 +14,7 @@ class BetsController < ApplicationController
 		@bet.user_id = current_user.id 
 		@bet.group_id = params[:bet][:group_id]
 		@bet.match_id = params[:bet][:match_id]
+		
 		if @bet.save
 			redirect_to group_path(params[:bet][:group_id]), notice: "utworzono zakład"
 		else

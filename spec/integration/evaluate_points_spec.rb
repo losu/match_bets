@@ -5,7 +5,7 @@ include Warden::Test::Helpers
 
 describe "evaluate points:" do
   before :each do
-    @user=User.create(id: 5, email: "test@example.com", password: "qwerty12345", admin: true)
+    @user=User.create(id: 5, email: "test@example.com", password: "qwerty12345", admin: true, nickname: "uberuser")
     visit '/users/sign_in'
     fill_in 'user_email',               :with => "test@example.com"
     fill_in 'user_password',            :with => "qwerty12345"
@@ -25,7 +25,6 @@ describe "evaluate points:" do
     find_button('Add!').click
     click_link('My groups')
     click_link('uber grupa 9000')
-    print page.html
     find_button('Add match').click
     page.find('a', :text => 'aaa vs bbb').click
     # find('aaa vs bbb').click
@@ -38,6 +37,13 @@ describe "evaluate points:" do
     click_link('evaluate')
     click_link('My groups')
     click_link('uber grupa 9000')
-    expect(page).to have_content ("Points scored in this group: 4")
+    find_button('Show Rank !').click
+    # print page.html
+    # page.find('th', :text => 'Nickname')
+    # expect(page).to have_selector('th', text: "4")
+    expect(page).to have_content("Nickname")
+    expect(page).to have_content("Score")
+    expect(page).to have_content("uberuser")
+    expect(page).to have_content("4")
   end
 end

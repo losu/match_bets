@@ -1,4 +1,4 @@
-#coding UTF-8
+# coding: UTF-8
 
 class MatchesController < ApplicationController
 	before_action :authenticate_user!, only: [ :new, :create]
@@ -22,8 +22,6 @@ class MatchesController < ApplicationController
 			@match = Match.new
 	end
 
-
-
 	def create
 		@user = current_user
 		@match = Match.new(match_params)
@@ -35,7 +33,6 @@ class MatchesController < ApplicationController
 			render :new
 		end
 	end
-
 
 	def update
 		match = Match.find(params[:id])
@@ -87,14 +84,15 @@ class MatchesController < ApplicationController
 	end
 
 	private
-		def match_params
-			params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)
-		end
 
-		def check_if_admin
-			unless current_user.admin
-				redirect_to root_url, alert: "You don't have permission to do this"
-			end
+	def match_params
+		params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)
+	end
+
+	def check_if_admin
+		unless current_user.admin
+			redirect_to root_url, alert: "You don't have permission to do this"
 		end
+	end
 
 end

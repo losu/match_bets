@@ -1,0 +1,7 @@
+-if @group.owner == current_user.id
+  %h4 Invite friends:
+  = form_for @invite do |f|
+    = f.hidden_field :group_id, :value => @id
+    = f.email_field  :email, :value => @invite.email, placeholder: "E-mail"
+    = f.submit "Send", class: "btn btn-primary btn-small"
+
