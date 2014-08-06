@@ -20,8 +20,8 @@ namespace :matches_parser do
       matches << Match.new(team_name_1: tn1, team_name_2: tn2, team_score_1: "0", team_score_2: "0")
       i += 3
     end
-    event = Tournament.new(name: "Mistrzostwa Świata 2014")
-    # event = Tournament.create(name: "Mistrzostwa Świata 2014")
+    # event = Tournament.new(name: "Mistrzostwa Świata 2014")
+    event = Tournament.create(name: "Mistrzostwa Świata 2014")
     i = 0
     matches.each do |m|
       m.tournament_id = event.id
@@ -34,7 +34,7 @@ namespace :matches_parser do
       t=t.change(year: 2015)
       m.deadline = t
       puts m.team_name_1.to_s + " vs " + m.team_name_2.to_s + " " + t.to_s
-      # m.save
+      m.save
       i+=4
     end
   end
