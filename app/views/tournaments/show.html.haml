@@ -5,15 +5,15 @@
   %table.table.table-striped.table-condensed
     %thead
       %tr
+        %th
+        %th 
         %th team 1
         %th team 2
+        %th score 1
+        %th score 2
         %th deadline
-    - @matches.each do |match|
-      %thead
-        %tr
-          %td #{match.team_name_1}
-          %td #{match.team_name_2}
-          %td #{match.deadline}
+        %th= link_to 'evaluate all', evaluate_all_matches_path, method: :post
+        = render "evaluate"
   .dropdown
     %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
       Add match
