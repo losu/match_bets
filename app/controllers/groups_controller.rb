@@ -60,11 +60,15 @@ class GroupsController < ApplicationController
 		matchsets = Matchset.where(group_id: @id)
 		@bet_visible = {}
 		@match_array = []
+		@tournament_hash = [] #key: match_id, value: tournament name
 		if matchsets.count > 0
 			matchsets.each do |matchset|
 				match = Match.find(matchset.match_id)
 				if match.deadline > Time.now
 					@match_array << match
+					if !match.tournament_id.blank?
+						@tournament_hash[match.id] = Tournament.find(match.tournament_id).name
+					end
 				end
 
 				bet = Bet.where(group_id:  @id, match_id:  match.id, user_id:  current_user.id)
@@ -91,7 +95,25 @@ class GroupsController < ApplicationController
 			end	
 		end
 		#---------------------------------------
+
+		#----Add Tournament---------------------
 		@tournaments = Tournament.all
+		@tournament_matches_hash ={}
+		@matchset_tournament_exist = {}
+
+		@tournaments.each do |tournament|
+			
+			tournament_matches = Match.where(tournament_id: tournament.id)
+			@tournament_matches_hash[tournament.id] = tournament_matches[0]
+			find_matchsets = Matchset.where(group_id: @id, match_id: tournament_matches[0])
+
+			if find_matchsets.blank?
+				@matchset_tournament_exist[tournament_matches[0]] = true
+			else
+				@matchset_tournament_exist[tournament_matches[0]] = false
+			end
+		end
+		#---------------------------------------
 
 	end
 

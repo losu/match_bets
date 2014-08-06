@@ -36,11 +36,19 @@ class MatchesController < ApplicationController
 
 	def update
 		match = Match.find(params[:id])
-		match.team_score_1 = match_params[:team_score_1]
-		match.team_score_2 = match_params[:team_score_2]
-		match.deadline = match_params[:deadline]
+		if match_params[:team_score_2] && match_params[:team_score_1]
+			match.team_score_1 = match_params[:team_score_1]
+			match.team_score_2 = match_params[:team_score_2]
+		end
+		if match_params[:deadline]
+			match.deadline = match_params[:deadline]
+		end
+		if match_params[:team_name_1] && match_params[:team_name_2]
+			match.team_name_1 = match_params[:team_name_1]
+			match.team_name_2 = match_params[:team_name_2]
+		end
 		match.save
-		redirect_to matches_path, notice: "Score saved !"
+		redirect_to matches_path, notice: match.errors.full_messages
 	end
 
 	def evaluate_for_match
@@ -82,7 +90,7 @@ class MatchesController < ApplicationController
 	private
 
 	def match_params
-		params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)
+		params.require(:match).permit(:team_name_1, :team_name_2, :team_score_1, :team_score_2, :deadline)
 	end
 
 	def check_if_admin

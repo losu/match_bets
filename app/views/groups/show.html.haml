@@ -7,20 +7,7 @@
 =render "invitefriend"
 =render "available_matches_table"
 =render "add_match_to_group"
-
-
-
-.dropdown
-  %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-    Add Tournament
-    %span.caret
-  %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-    - @tournaments.each do |tournament|
-      %li{role: "presentation"}
-        -find_tournament_matches = Match.where(tournament_id: tournament.id)
-        -find_matchsets = Matchset.where(group_id: @id, match_id: find_tournament_matches[0])
-        -if find_matchsets.blank?
-          %a{href: group_add_tournament_path(:tournament_id => tournament.id, :group_id => @group.id), role: "menuitem", tabindex: "-1"}#{tournament.name}
+=render "add_tournament"
 =render "bets_table"
 :javascript
   $(".second").pageslide({ direction: "right", modal: true });
