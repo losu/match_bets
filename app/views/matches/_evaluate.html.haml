@@ -19,7 +19,7 @@
           %th #{match.team_score_1}
           %th #{match.team_score_2}
           %th 
-            =f.text_field :deadline, value: match.deadline, class: "form-control, dtpicker", "data-format" => "dd-MM-yyyy hh:mm:ss", :id => "datetimepicker"
+            =f.text_field :deadline, value: match.deadline, class: "form-control, dtpicker", "data-format" => "dd-MM-yyyy hh:mm:ss"
           %th
             =f.submit "Save!", class: "btn, btn-primary"
         -elsif match.evaluated
@@ -32,6 +32,6 @@
           %th 
             =f.text_field :team_score_2, value: match.team_score_2, class: "form-control"
           %th 
-            =f.text_field :deadline, value: match.deadline, class: "form-control, dtpicker", "data-format" => "dd-MM-yyyy hh:mm:ss", :id => "datetimepicker"
+            =f.text_field :deadline, value: match.deadline, class: "form-control, dtpicker", "data-format" => "dd-MM-yyyy hh:mm:ss"
           %th
             =f.submit "Save!", class: "btn, btn-primary"

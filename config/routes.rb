@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'match/evaluate_all_matches' => 'matches#evaluate_all_matches', as: 'evaluate_all_matches'
   resources :mailer
   resources :groups
-  resources :about
+  resources :about, only: [:index]
   resources :matches
   resources :bets
   resources :tournaments
