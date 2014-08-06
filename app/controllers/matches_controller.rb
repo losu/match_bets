@@ -36,15 +36,11 @@ class MatchesController < ApplicationController
 
 	def update
 		match = Match.find(params[:id])
-		if match_params[:deadline] < Time.now
-			match.team_score_1 = match_params[:team_score_1]
-			match.team_score_2 = match_params[:team_score_2]
-			match.deadline = match_params[:deadline]
-			match.save
-			redirect_to matches_path, notice: "Score saved !"
-		else
-			redirect_to matches_path, alert: "You can't change score before the bets deadline!"
-		end
+		match.team_score_1 = match_params[:team_score_1]
+		match.team_score_2 = match_params[:team_score_2]
+		match.deadline = match_params[:deadline]
+		match.save
+		redirect_to matches_path, notice: "Score saved !"
 	end
 
 	def evaluate_for_match
