@@ -7,7 +7,7 @@
 =render "invitefriend"
 =render "available_matches_table"
 =render "add_match_to_group"
-=render "bets_table"
+
 
 
 .dropdown
@@ -21,5 +21,6 @@
         -find_matchsets = Matchset.where(group_id: @id, match_id: find_tournament_matches[0])
         -if find_matchsets.blank?
           %a{href: group_add_tournament_path(:tournament_id => tournament.id, :group_id => @group.id), role: "menuitem", tabindex: "-1"}#{tournament.name}
+=render "bets_table"
 :javascript
   $(".second").pageslide({ direction: "right", modal: true });
