@@ -19,6 +19,11 @@ class TournamentsController < ApplicationController
     @tournament_id = params[:id]
     @match.tournament_id = @tournament_id
     @match.save
+
+    tournament_match = Match.find_by_tournament_id(@tournament_id)
+    matchsets = Matchset.where(match_id: tournament_match.id)
+
+
     redirect_to tournament_path(@tournament_id)
   end
 
@@ -28,6 +33,8 @@ class TournamentsController < ApplicationController
       redirect_to tournaments_path
     else
       render :new
+
+
     end
   end
 
