@@ -38,12 +38,13 @@ describe "evaluate points:" do
     click_link('My groups')
     click_link('uber grupa 9000')
     find_button('Show Rank !').click
-    # print page.html
-    # page.find('th', :text => 'Nickname')
+    print page.html
+    page.find('.nickname')
     # expect(page).to have_selector('th', text: "4")
-    expect(page).to have_content("Nickname")
-    expect(page).to have_content("Score")
-    expect(page).to have_content("uberuser")
-    expect(page).to have_content("4")
+    # expect(page).to have_content('th.nickname')
+    # expect(page).to have_content("Nickname")
+    # expect(page).to have_content("Score")
+    # expect(page).to have_content("uberuser")
+    # expect(page).to have_content("4")
   end
 end

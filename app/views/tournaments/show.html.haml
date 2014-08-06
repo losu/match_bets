@@ -7,11 +7,13 @@
       %tr
         %th team 1
         %th team 2
+        %th deadline
     - @matches.each do |match|
       %thead
         %tr
           %td #{match.team_name_1}
           %td #{match.team_name_2}
+          %td #{match.deadline}
   .dropdown
     %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
       Add match
