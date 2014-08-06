@@ -20,9 +20,10 @@
             %td ?
             %td ?
             %td #{match.deadline}
-            -if match.tournament_id
-              %td #{Tournament.find(match.tournament_id).name}
-            -else 
-              %td
+            %td
+              -if @tournament_hash[match.id].blank?
+                ="-"
+              -else 
+                =@tournament_hash[match.id]
             %td
               =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id
