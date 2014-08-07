@@ -1,3 +1,5 @@
+# coding: UTF-8
+
 class RegistrationsController < Devise::RegistrationsController
 
   def new
@@ -6,7 +8,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    # add custom create logic here
     super
 
     @token = params[:invite_token]
@@ -24,7 +25,6 @@ class RegistrationsController < Devise::RegistrationsController
     Groupset.find_by(user_id: resource.id).destroy
     super
   end
-
 
   def update
     super

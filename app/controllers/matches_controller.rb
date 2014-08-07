@@ -1,4 +1,4 @@
-#coding UTF-8
+# coding: UTF-8
 
 class MatchesController < ApplicationController
 	before_action :authenticate_user!, only: [ :new, :create]
@@ -22,8 +22,6 @@ class MatchesController < ApplicationController
 			@match = Match.new
 	end
 
-
-
 	def create
 		@user = current_user
 		@match = Match.new(match_params)
@@ -32,22 +30,25 @@ class MatchesController < ApplicationController
 		if @match.save
 			redirect_to matches_path
 		else
-			render:new
+			render :new
 		end
 	end
 
-
 	def update
 		match = Match.find(params[:id])
-		if match_params[:deadline] < Time.now
+		if match_params[:team_score_2] && match_params[:team_score_1]
 			match.team_score_1 = match_params[:team_score_1]
 			match.team_score_2 = match_params[:team_score_2]
-			match.deadline = match_params[:deadline]
-			match.save
-			redirect_to matches_path, notice: "Score saved !"
-		else
-			redirect_to matches_path, alert: "You can't change score before the bets deadline!"
 		end
+		if match_params[:deadline]
+			match.deadline = match_params[:deadline]
+		end
+		if match_params[:team_name_1] && match_params[:team_name_2]
+			match.team_name_1 = match_params[:team_name_1]
+			match.team_name_2 = match_params[:team_name_2]
+		end
+		match.save
+		redirect_to matches_path, notice: match.errors.full_messages
 	end
 
 	def evaluate_for_match
@@ -87,14 +88,15 @@ class MatchesController < ApplicationController
 	end
 
 	private
-		def match_params
-			params.require(:match).permit(:team_name_1, :team_name_2, :deadline, :team_score_1, :team_score_2)
-		end
 
-		def check_if_admin
-			unless current_user.admin
-				redirect_to root_url, alert: "You don't have permission to do this"
-			end
+	def match_params
+		params.require(:match).permit(:team_name_1, :team_name_2, :team_score_1, :team_score_2, :deadline)
+	end
+
+	def check_if_admin
+		unless current_user.admin
+			redirect_to root_url, alert: "You don't have permission to do this"
 		end
+	end
 
 end

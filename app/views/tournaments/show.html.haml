@@ -1,14 +1,25 @@
 %h1 Tournaments:
-@tournament.name
+=@tournament.name
 .panel.panel-default
   .panel-heading Matches in tournament:
   %table.table.table-striped.table-condensed
     %thead
       %tr
+        %th
+        %th 
         %th team 1
         %th team 2
-    - @matches.each do |match|
-      %thead
-        %tr
-          %td #{match.team_name_1}
-          %td #{match.team_name_2}
+        %th score 1
+        %th score 2
+        %th deadline
+        %th= link_to 'evaluate all', evaluate_all_matches_path, method: :post
+        = render "evaluate"
+  .dropdown
+    %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+      Add match
+      %span.caret
+    %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+      - @free_matches.each do |free_match|
+        %li{role: "presentation"}
+        
+          %a{href: tournament_addmatch_path(@tournament.id,:match_id => free_match.id, :id => @tournament.id), role: "menuitem", tabindex: "-1"}#{free_match.team_name_1 + " vs " +free_match.team_name_2}

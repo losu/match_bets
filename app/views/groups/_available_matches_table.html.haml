@@ -1,0 +1,29 @@
+.panel.panel-default
+  .panel-heading Available matches:
+  %table.table.table-striped.transparent
+    %thead
+      %tr
+        %th 
+        %th team 1
+        %th team 2
+        %th score 1
+        %th score 2
+        %th deadline
+        %th tournament
+    - @match_array.each do |match|
+      -if @bet_visible[match.id]
+        %thead
+          %tr
+            %td
+            %td #{match.team_name_1}
+            %td #{match.team_name_2}
+            %td ?
+            %td ?
+            %td #{match.deadline}
+            %td
+              -if @tournament_hash[match.id].blank?
+                ="-"
+              -else 
+                =@tournament_hash[match.id]
+            %td
+              =link_to "Bet!",  :controller => 'bets', :action => "new", :match_id => match.id, :group_id => @id

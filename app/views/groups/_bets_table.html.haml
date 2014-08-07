@@ -1,0 +1,34 @@
+.panel.panel-default
+  .panel-heading Your bets:
+  %table.table.table-striped
+    %thead
+      %tr
+        %th 
+        %th team 1
+        %th team 2
+        %th score 1
+        %th score 2
+        %th deadline
+        %th your bet
+        %th points
+    - @bets.each do |bet|    
+      %thead
+        %tr
+          -if bet.match.deadline > Time.now
+            %td
+            %td #{bet.match.team_name_1}
+            %td #{bet.match.team_name_2}
+            %td ?
+            %td ?
+            %td #{bet.match.deadline}
+            %td #{bet.team_score1} : #{bet.team_score2}
+            %td #{bet.points}
+          -else
+            %td
+            %td #{bet.match.team_name_1}
+            %td #{bet.match.team_name_2}
+            %td #{bet.match.team_score_1}
+            %td #{bet.match.team_score_2}
+            %td #{bet.match.deadline}
+            %td #{bet.team_score1} : #{bet.team_score2}
+            %td #{bet.points}
