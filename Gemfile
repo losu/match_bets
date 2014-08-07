@@ -46,5 +46,7 @@ gem 'capybara'
 
 group :development, :test do 
 	gem 'rspec-rails', '~> 3.0.0'
-	
+
+  gem 'simplecov', :require => false
+  gem 'simplecov-rcov'
 end
