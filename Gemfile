@@ -42,9 +42,9 @@ gem 'haml'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'quiet_assets'
-
+gem 'capybara'
 
 group :development, :test do 
 	gem 'rspec-rails', '~> 3.0.0'
-	gem 'capybara'
+	
 end
