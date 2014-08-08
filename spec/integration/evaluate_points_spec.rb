@@ -27,7 +27,6 @@ describe "evaluate points:" do
     click_link('uber grupa 9000')
     find_button('Add match').click
     page.find('a', :text => 'aaa vs bbb').click
-    # find('aaa vs bbb').click
     click_link('Bet!')
     fill_in 'bet_team_score1',          :with => "0"
     fill_in 'bet_team_score2',          :with => "0"
@@ -35,24 +34,9 @@ describe "evaluate points:" do
     click_link('Administrator panel')
     click_link('List of matches')
     click_link('evaluate')
+    expect(page).to have_content('evaluated properly')
     click_link('My groups')
     click_link('uber grupa 9000')
     find_button('Show Rank !').click
-    # print page.html
-# ------------------------------------------------
-# tymczasowy assert(true)
-
-
-
-
-    expect(page).to have_css('div')
-#-------------------------------------------------
-    # page.find('.score')
-    # expect(page).to have_selector('th', text: "4")
-    # expect(page).to have_content('th.nickname')
-    # expect(page).to have_content("Nickname")
-    # expect(page).to have_content("Score")
-    # expect(page).to have_content("uberuser")
-    # expect(page).to have_content("4")
   end
 end
