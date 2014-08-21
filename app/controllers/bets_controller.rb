@@ -5,6 +5,7 @@ class BetsController < ApplicationController
 	def index 
 
 	end
+	
 	def new
 		@bet=Bet.new
 		# @match = Match.where(id= :match_id)

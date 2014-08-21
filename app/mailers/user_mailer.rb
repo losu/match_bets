@@ -9,7 +9,6 @@ class UserMailer < ActionMailer::Base
         @group_name = Group.find_by_id(invite.group_id).name
         mail(to: @recipient_email, subject: 'Welcome to My Awesome Site')
     end
-
     def existing_user(invite, invite_token)
         @recipient_email = invite.email
         @sender_email = User.find_by_id(invite.sender_id).email
